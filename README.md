@@ -17,6 +17,20 @@ already **enforces** about it, what is only **advisory**, and what is an open
 **`policy wanted`** — an invitation to contribute a gate to the
 [catalog](https://github.com/open-coder-ai/chock-catalog).
 
+## Disclaimer
+
+This repository is an independent, unofficial compilation. We are **not** an
+authoritative or authorized source for any of the frameworks, taxonomies, or
+advisories referenced here. All threat data originates from the third-party
+publications cited inline (OWASP, MITRE, NIST, CISA, and the other named
+publishers); we aggregate and summarize it for the convenience of mapping catalog
+policies against it. Errors, omissions, and staleness are possible — **always
+fact-check against the cited canonical source before relying on any entry**, and
+treat the publisher's version as the one that governs. Framework names, entry IDs,
+and trademarks belong to their respective owners; their use here is referential and
+implies no affiliation or endorsement. This content is provided as-is, without
+warranty of any kind, and is not security, legal, or compliance advice.
+
 ## How it works
 
 - **Weekly sweep.** An automated review checks the published threat frameworks (OWASP
