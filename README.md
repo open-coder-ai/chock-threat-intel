@@ -31,6 +31,19 @@ already **enforces** about it, what is only **advisory**, and what is an open
   the same tiers the catalog's own README defines, and the same rule: never claim more
   than the mechanism does.
 
+## The reference layer
+
+[`reference/agentic-threat-ledger.md`](reference/agentic-threat-ledger.md) is the FULL
+enumeration — all 22 published frameworks, 400+ entries, versions and canonical links —
+refreshed in place by the weekly sweep, not summarized. Digests are the diffs; the
+ledger is the state.
+
+[`reference/coverage-crosswalk.md`](reference/coverage-crosswalk.md) is the comparison
+the digests score against: every relevant ledger entry mapped to what the
+[catalog](https://github.com/open-coder-ai/chock-catalog) actually implements —
+enforced slice, advisory, `policy wanted`, or declared out of scope. No green-checkmark
+walls; the out-of-scope rows are listed on purpose.
+
 ## Reading a digest
 
 One file per week in [`digests/`](digests/), newest first. Entries reference the OWASP
