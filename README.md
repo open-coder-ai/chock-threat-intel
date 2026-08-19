@@ -33,16 +33,14 @@ already **enforces** about it, what is only **advisory**, and what is an open
 
 ## The reference layer
 
-[`reference/agentic-threat-ledger.md`](reference/agentic-threat-ledger.md) is the FULL
-enumeration — all 22 published frameworks, 400+ entries, versions and canonical links —
-refreshed in place by the weekly sweep, not summarized. Digests are the diffs; the
-ledger is the state.
-
-[`reference/coverage-crosswalk.md`](reference/coverage-crosswalk.md) is the comparison
-the digests score against: every relevant ledger entry mapped to what the
-[catalog](https://github.com/open-coder-ai/chock-catalog) actually implements —
-enforced slice, advisory, `policy wanted`, or declared out of scope. No green-checkmark
-walls; the out-of-scope rows are listed on purpose.
+[`reference/agentic-threat-ledger.md`](reference/agentic-threat-ledger.md) is the ONE
+main document: the full enumeration — all 22 published frameworks, 400+ entries, every
+entry citing its publisher, version, date, and canonical link — plus, at the end, the
+coverage section mapping the relevant entries to what the
+[catalog](https://github.com/open-coder-ai/chock-catalog) actually implements
+(enforced slice / advisory / `policy wanted` / declared out of scope). Refreshed in
+place by the weekly sweep, never summarized. Digests are the diffs; the ledger is the
+state.
 
 ## Reading a digest
 
