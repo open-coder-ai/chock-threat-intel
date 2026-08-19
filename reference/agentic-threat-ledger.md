@@ -2,6 +2,8 @@
 
 # Agentic Threat Ledger
 
+> **Citation discipline:** every framework section below carries its publisher, version, publication date, and a link to the canonical source; entry IDs are the publisher's own. Nothing in this file is original claim — it is an index into the cited publications. If an entry has no working citation, it does not belong here.
+
 Every major published AI & agentic-AI threat taxonomy, enumerated entry by entry — OWASP, MITRE, NIST, national cyber agencies, CSA, Microsoft, Google, and the academic aggregators — with versions, canonical links, and a crosswalk for mapping guardrail policies against them.
 
 
@@ -12,7 +14,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### Top 10 for Agentic Applications 2026  `OWASP ASI`
 
-*v1.0 · Dec 9, 2025 · genai.owasp.org · peer-reviewed by 100+ experts*
+**Source:** v1.0 · Dec 9, 2025 · [genai.owasp.org](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) · peer-reviewed by 100+ experts
 
 | ID | Risk | Description |
 | :--- | :--- | :--- |
@@ -30,7 +32,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### Agentic AI — Threats and Mitigations  `OWASP ASI`
 
-*v1.0 Feb 2025 (T1–T15); v1.1 Dec 2025 adds T16–T17 · genai.owasp.org — the master taxonomy the Top 10 was distilled from*
+**Source:** v1.0 Feb 2025 (T1–T15); v1.1 Dec 2025 adds T16–T17 · [genai.owasp.org](https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/) — the master taxonomy the Top 10 was distilled from
 
 | ID | Threat | Description |
 | :--- | :--- | :--- |
@@ -55,7 +57,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### Companion ASI documents  `OWASP ASI`
 
-- Multi-Agentic System Threat Modeling Guide v1.0 — applies T1–T15 to real multi-agent architectures using the MAESTRO layered method
+- [Multi-Agentic System Threat Modeling Guide v1.0](https://genai.owasp.org/resource/multi-agentic-system-threat-modeling-guide-v1-0/) — applies T1–T15 to real multi-agent architectures using the MAESTRO layered method
 - Securing Agentic Applications Guide — the developer/operator control catalog (concrete controls, not threats)
 - A Practical Guide for Secure MCP Server Development (Feb 2026) — for teams building MCP servers
 - CheatSheet: Securely Using Third-Party MCP Servers 1.0 (Nov 2025) — for teams consuming MCP servers
@@ -67,7 +69,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### GenAI LLM Top 10 2026  `OWASP GenAI`
 
-*2026 edition · Aug 3, 2026 · genai.owasp.org · first data-validated edition: 7,714 real incidents analyzed, weighted 75% community vote / 25% incident data*
+**Source:** 2026 edition · Aug 3, 2026 · [genai.owasp.org](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/) · first data-validated edition: 7,714 real incidents analyzed, weighted 75% community vote / 25% incident data
 
 | ID | Risk | Description |
 | :--- | :--- | :--- |
@@ -85,7 +87,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### GenAI Data Security Risks & Mitigations 2026  `OWASP GenAI`
 
-*v1.0 · Mar 2026 · genai.owasp.org · 21 data-layer risk categories, training data through prompts, embeddings, outputs, backups*
+**Source:** v1.0 · Mar 2026 · [genai.owasp.org](https://genai.owasp.org/resource/owasp-genai-data-security-risks-mitigations-2026/) · 21 data-layer risk categories, training data through prompts, embeddings, outputs, backups
 
 | ID | Risk | Description |
 | :--- | :--- | :--- |
@@ -114,7 +116,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### AI Exchange — threat matrix  `OWASP flagship`
 
-*Living publication · owaspai.org · every threat maps to controls; feeds ISO/IEC 27090, ISO/IEC 27091, and the EU AI Act security standard (prEN 18282)*
+**Source:** Living publication · [owaspai.org](https://owaspai.org/docs/ai_security_overview/) · every threat maps to controls; feeds ISO/IEC 27090, ISO/IEC 27091, and the EU AI Act security standard (prEN 18282)
 
 
 **Model behavior integrity**
@@ -139,7 +141,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### Machine Learning Security Top 10  `OWASP · dormant`
 
-*v0.3 draft, 2023 — no update since; classical-ML focused, superseded in practice by the GenAI project · owasp.org*
+**Source:** v0.3 draft, 2023 — no update since; classical-ML focused, superseded in practice by the GenAI project · [owasp.org](https://owasp.org/www-project-machine-learning-security-top-10/)
 
 | ID | Attack |
 | :--- | :--- |
@@ -157,7 +159,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 
 ### AIVSS — AI Vulnerability Scoring System  `OWASP`
 
-*v0.8 · Mar 25, 2026 · aivss.owasp.org · AIVSS = (CVSS_Base + AARS) × Mitigation_Factor — a CVSS analog with ten agentic risk-amplification factors, each scored 0.0 / 0.5 / 1.0*
+**Source:** v0.8 · Mar 25, 2026 · [aivss.owasp.org](https://aivss.owasp.org/) · `AIVSS = (CVSS_Base + AARS) × Mitigation_Factor` — a CVSS analog with ten agentic risk-amplification factors, each scored 0.0 / 0.5 / 1.0
 
 - Autonomy — executes actions without human verification
 - Tools — breadth and privilege of external APIs accessible
@@ -178,7 +180,7 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### MITRE ATLAS  `MITRE`
 
-*v5.6.0 · May 2026 (data snapshot v2026.07) · atlas.mitre.org · 16 tactics, 101 techniques + 69 sub-techniques (170 entries); the ATT&CK analog for AI systems*
+**Source:** v5.6.0 · May 2026 (data snapshot v2026.07) · [atlas.mitre.org](https://atlas.mitre.org) · 16 tactics, 101 techniques + 69 sub-techniques (170 entries); the ATT&CK analog for AI systems
 
 | ID | Tactic | Description |
 | :--- | :--- | :--- |
@@ -220,7 +222,7 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### NIST AI 100-2e2025 — Adversarial ML Taxonomy  `NIST`
 
-*e2025 · Mar 24, 2025 · nvlpubs.nist.gov · two taxonomies (Predictive AI, Generative AI) with a formal violation index; the e2025 edition adds §3.5 "Security of Agents"*
+**Source:** e2025 · Mar 24, 2025 · [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf) · two taxonomies (Predictive AI, Generative AI) with a formal violation index; the e2025 edition adds §3.5 "Security of Agents"
 
 
 **Predictive AI attack classes**
@@ -243,7 +245,7 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### NIST AI 600-1 — Generative AI Profile  `NIST`
 
-*Jul 2024 · nvlpubs.nist.gov · the 12 named GAI risks of the AI Risk Management Framework*
+**Source:** Jul 2024 · [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf) · the 12 named GAI risks of the AI Risk Management Framework
 
 | # | Risk | Description |
 | :--- | :--- | :--- |
@@ -263,22 +265,22 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### Joint agency guidance  `CISA · NSA · FBI · NCSC`
 
-- Guidelines for Secure AI System Development (NCSC + CISA + 21 agencies, Nov 2023) — 17 guidelines across four areas: secure design (threat modeling, security-vs-functionality trade-offs), secure development (supply chain, asset tracking, documenting data/models/prompts, technical debt), secure deployment (infrastructure, continuous model protection, incident management, responsible release), secure operation (monitor behavior, monitor inputs, secure-by-design updates, lessons sharing)
-- Deploying AI Systems Securely (NSA-led CSI, Apr 2024) — three goals: secure the deployment environment (governance, zero-trust architecture, hardened containers/VMs); continuously protect the AI system (validate before/during use, secure exposed APIs, monitor model behavior, protect weights in isolated vaults/HSMs); secure operation and maintenance (strict access controls, audits and pen-testing, logging, patching, HA/DR, secure delete)
-- AI Data Security (May 2025) — three risk areas (data supply chain incl. split-view and frontrunning poisoning; maliciously modified data; data drift) and ten best practices (provenance tracking, integrity verification, digital signatures, trusted infrastructure, classification and access control, encryption, secure storage, privacy-preserving techniques, secure deletion, ongoing risk assessment)
+- [Guidelines for Secure AI System Development](https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development) (NCSC + CISA + 21 agencies, Nov 2023) — 17 guidelines across four areas: secure design (threat modeling, security-vs-functionality trade-offs), secure development (supply chain, asset tracking, documenting data/models/prompts, technical debt), secure deployment (infrastructure, continuous model protection, incident management, responsible release), secure operation (monitor behavior, monitor inputs, secure-by-design updates, lessons sharing)
+- [Deploying AI Systems Securely](https://www.cisa.gov/news-events/alerts/2024/04/15/joint-guidance-deploying-ai-systems-securely) (NSA-led CSI, Apr 2024) — three goals: secure the deployment environment (governance, zero-trust architecture, hardened containers/VMs); continuously protect the AI system (validate before/during use, secure exposed APIs, monitor model behavior, protect weights in isolated vaults/HSMs); secure operation and maintenance (strict access controls, audits and pen-testing, logging, patching, HA/DR, secure delete)
+- [AI Data Security](https://www.cisa.gov/resources-tools/resources/ai-data-security-best-practices-securing-data-used-train-operate-ai-systems) (May 2025) — three risk areas (data supply chain incl. split-view and frontrunning poisoning; maliciously modified data; data drift) and ten best practices (provenance tracking, integrity verification, digital signatures, trusted infrastructure, classification and access control, encryption, secure storage, privacy-preserving techniques, secure deletion, ongoing risk assessment)
 - Careful Adoption of Agentic AI Services (CISA + NSA + AU/CA/NZ/UK, Apr 30, 2026) — five named agentic risk categories: privilege escalation; design and configuration failures; behavioral misalignment; structural brittleness; accountability gaps . Principles: cryptographically anchored agent identity with short-lived credentials, human approval authority encoded in design, supply-chain rigor for third-party agents/tools, zero trust adapted to agents
 
 
 ### NIST agentic pipeline (in progress)  `NIST · CAISI`
 
-- COSAiS — SP 800-53 Control Overlays for Securing AI Systems — five proposed overlays, including Using AI Agent Systems: Single Agent and Multi-Agent ; agentic overlays in active development as of mid-2026
-- CAISI RFI: Security Considerations for AI Agents (Jan 2026) — builds on CAISI agent-hijacking red-team evals (novel task-hijack strategies at ~81% success vs 11% for known baselines)
-- AI Agent Standards Initiative (Feb 2026) — three pillars: industry-led standards, community-led protocols, research investment; includes agent identity/authentication work with NCCoE
+- [COSAiS — SP 800-53 Control Overlays for Securing AI Systems](https://csrc.nist.gov/projects/cosais) — five proposed overlays, including Using AI Agent Systems: Single Agent and Multi-Agent ; agentic overlays in active development as of mid-2026
+- [CAISI RFI: Security Considerations for AI Agents](https://www.federalregister.gov/documents/2026/01/08/2026-00206/request-for-information-regarding-security-considerations-for-artificial-intelligence-agents) (Jan 2026) — builds on CAISI agent-hijacking red-team evals (novel task-hijack strategies at ~81% success vs 11% for known baselines)
+- [AI Agent Standards Initiative](https://www.nist.gov/artificial-intelligence/ai-agent-standards-initiative) (Feb 2026) — three pillars: industry-led standards, community-led protocols, research investment; includes agent identity/authentication work with NCCoE
 
 
 ### ENISA — Threat Landscape for AI  `ENISA · dated`
 
-*Dec 2020 — still ENISA's dedicated AI taxonomy; successors add practice frameworks, not new taxonomies · enisa.europa.eu · 8 categories mapping 74 threats*
+**Source:** Dec 2020 — still ENISA's dedicated AI taxonomy; successors add practice frameworks, not new taxonomies · [enisa.europa.eu](https://www.enisa.europa.eu/publications/artificial-intelligence-cybersecurity-challenges) · 8 categories mapping 74 threats
 
 - Nefarious activity/abuse · Eavesdropping/Interception/Hijacking · Physical attacks · Unintentional damage · Failures or malfunctions · Outages · Disaster · Legal
 
@@ -290,7 +292,7 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 
 ### Taxonomy of Failure Modes in Agentic AI Systems  `Microsoft AI Red Team`
 
-*v1.0 Apr 2025, v2.0 Jun 2026 · 2×2 structure: Security vs Safety × Novel vs Existing · v2.0 PDF*
+**Source:** v1.0 Apr 2025, [v2.0 Jun 2026](https://www.microsoft.com/en-us/security/blog/2026/06/04/updating-taxonomy-failure-modes-agentic-ai-systems-year-red-teaming-taught-us/) · 2×2 structure: Security vs Safety × Novel vs Existing · [v2.0 PDF](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Taxonomy-of-Failure-Modes-in-Agentic-AI-Systems-v2-0.pdf)
 
 
 **Novel security (6)**
@@ -331,7 +333,7 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 
 ### Google Secure AI Framework (SAIF)  `Google`
 
-*Risk map since Oct 2024 · saif.google · 15 risks mapped to four component areas (Data, Infrastructure, Model, Application), split between model creators and consumers*
+**Source:** Risk map since Oct 2024 · [saif.google](https://saif.google/secure-ai-framework/risks) · 15 risks mapped to four component areas (Data, Infrastructure, Model, Application), split between model creators and consumers
 
 | Risk | Area | Description |
 | :--- | :--- | :--- |
@@ -354,7 +356,7 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 
 ### Cloud Security Alliance  `CSA`
 
-*MAESTRO Feb 2025 · Red Teaming Guide (with OWASP AI Exchange) May 2025 · cloudsecurityalliance.org*
+**Source:** MAESTRO Feb 2025 · Red Teaming Guide (with OWASP AI Exchange) May 2025 · [cloudsecurityalliance.org](https://cloudsecurityalliance.org/artifacts/agentic-ai-red-teaming-guide)
 
 
 **MAESTRO — 7 layers**
@@ -382,7 +384,7 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 
 ### Unit 42 — AI Agents Are Here. So Are the Threats.  `Palo Alto Networks`
 
-*May 2025 · unit42.paloaltonetworks.com · nine attack scenarios demonstrated against identical CrewAI and AutoGen agents — framework-agnostic, rooted in insecure design*
+**Source:** May 2025 · [unit42.paloaltonetworks.com](https://unit42.paloaltonetworks.com/agentic-ai-threats/) · nine attack scenarios demonstrated against identical CrewAI and AutoGen agents — framework-agnostic, rooted in insecure design
 
 - 1 Identifying participant agents · 2 Extracting agent instructions · 3 Extracting agent tool schemas
 - 4 Internal network access via web-reader SSRF · 5 Data exfiltration via mounted volumes · 6 Service-account token theft via cloud metadata endpoints
@@ -391,11 +393,11 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 
 ### Lab principles & structural rules  `Meta · OpenAI · Anthropic`
 
-*Design principles rather than threat enumerations — useful as policy heuristics*
+**Source:** Design principles rather than threat enumerations — useful as policy heuristics
 
-- Meta — Agents Rule of Two (Oct 2025): in a single session an agent should hold no more than two of — [A] processes untrustworthy inputs, [B] has access to sensitive systems or private data, [C] can change state or communicate externally. All three genuinely needed ⇒ no autonomous run; human validation required before consequential actions
-- OpenAI — Practices for Governing Agentic AI Systems (Dec 2023): task suitability evaluation · action-space constraint and approval · default behaviors · legibility · automatic monitoring · attributability · interruptibility and control
-- Anthropic — framework for safe and trustworthy agents (2025): human control and oversight · transparency · alignment · privacy across contexts · security against prompt injection
+- [Meta — Agents Rule of Two](https://ai.meta.com/blog/practical-ai-agent-security/) (Oct 2025): in a single session an agent should hold no more than two of — [A] processes untrustworthy inputs, [B] has access to sensitive systems or private data, [C] can change state or communicate externally. All three genuinely needed ⇒ no autonomous run; human validation required before consequential actions
+- [OpenAI — Practices for Governing Agentic AI Systems](https://openai.com/index/practices-for-governing-agentic-ai-systems/) (Dec 2023): task suitability evaluation · action-space constraint and approval · default behaviors · legibility · automatic monitoring · attributability · interruptibility and control
+- [Anthropic — framework for safe and trustworthy agents](https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents) (2025): human control and oversight · transparency · alignment · privacy across contexts · security against prompt injection
 
 
 ## Academic & incident aggregators
@@ -405,7 +407,7 @@ The widest lenses: MIT catalogs 1,700+ risks from 74 frameworks; AVID and the AI
 
 ### MIT AI Risk Repository  `MIT FutureTech`
 
-*v4 · Dec 2025 · airisk.mit.edu · 1,700+ risks from 74 frameworks, coded against two orthogonal taxonomies; biannual updates*
+**Source:** v4 · Dec 2025 · [airisk.mit.edu](https://airisk.mit.edu/) · 1,700+ risks from 74 frameworks, coded against two orthogonal taxonomies; biannual updates
 
 
 **Causal taxonomy**
@@ -426,7 +428,7 @@ The widest lenses: MIT catalogs 1,700+ risks from 74 frameworks; AVID and the AI
 
 ### AVID — AI Vulnerability Database  `avidml.org`
 
-*avidml.org/taxonomy · two views: effect (Security / Ethics / Performance) and lifecycle (CRISP-DM stages L01–L06)*
+**Source:** [avidml.org/taxonomy](https://avidml.org/taxonomy/) · two views: effect (Security / Ethics / Performance) and lifecycle (CRISP-DM stages L01–L06)
 
 - Security (S): S0100 Software Vulnerability · S0200 Supply Chain Compromise (model, software) · S0300 Over-permissive API (info leak, excessive queries) · S0400 Model Bypass (bad features, insufficient training data, adversarial examples) · S0500 Exfiltration (model inversion, model theft) · S0600 Data Poisoning (ingest poisoning)
 - Ethics (E): E0100 Bias/Discrimination · E0200 Explainability · E0300 User actions (toxicity, polarization) · E0400 Misinformation (deliberative, generative)
@@ -435,12 +437,12 @@ The widest lenses: MIT catalogs 1,700+ risks from 74 frameworks; AVID and the AI
 
 ### AI Incident Database  `Responsible AI Collaborative`
 
-*incidentdatabase.ai · incidents coded against three taxonomies: CSETv1 AI Harm (Georgetown), GMF (Goals-Methods-Failures), and the MIT Repository taxonomy*
+**Source:** [incidentdatabase.ai](https://incidentdatabase.ai/taxonomies/) · incidents coded against three taxonomies: CSETv1 AI Harm (Georgetown), GMF (Goals-Methods-Failures), and the MIT Repository taxonomy
 
 
 ### The Lethal Trifecta  `Simon Willison`
 
-*Jun 2025 · simonwillison.net · operationalized by CSA and commonly mapped onto ASI01–ASI03; predecessor of Meta's Rule of Two*
+**Source:** Jun 2025 · [simonwillison.net](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/) · operationalized by CSA and commonly mapped onto ASI01–ASI03; predecessor of Meta's Rule of Two
 
 
 ## Building catalog policies from this
@@ -451,7 +453,7 @@ Not every list is enforcement-shaped. Three groupings matter when turning this l
 - Design-rule-shaped (structural preconditions a policy can assert): Meta's Rule of Two, the lethal trifecta, Google's three agent principles, AIVSS's ten amplification factors, NCSC/CISA practice lists
 - Governance/harm-shaped (risk registers and review checklists, not runtime gates): NIST AI 600-1, MIT Repository, AI Incident Database, ENISA
 
-*Starter crosswalk — common guardrail policy themes and where each framework names them:*
+**Source:** Starter crosswalk — common guardrail policy themes and where each framework names them:
 
 | Policy theme | OWASP ASI | OWASP T | LLM Top 10 | ATLAS | Microsoft | CSA RT |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -469,7 +471,7 @@ Not every list is enforcement-shaped. Three groupings matter when turning this l
 | Resource consumption | — | T4 | LLM06 | T0034.002 | Resource exhaustion | #10 |
 | Observability / traceability | — | T8 | — | — | Insufficient transparency | #12 |
 
-> Suggested backbone: use OWASP T1–T17 as the policy-family spine (it is the most granular agent-native list with mitigations attached), tag each policy with its ASI01–10 rank for prioritization, and cite ATLAS technique IDs as the detection-level vocabulary — ATLAS is the only taxonomy with machine-readable YAML ( atlas-data on GitHub) suited to automated crosswalks.
+> Suggested backbone: use OWASP T1–T17 as the policy-family spine (it is the most granular agent-native list with mitigations attached), tag each policy with its ASI01–10 rank for prioritization, and cite ATLAS technique IDs as the detection-level vocabulary — ATLAS is the only taxonomy with machine-readable YAML ( `atlas-data` on GitHub) suited to automated crosswalks.
 > Microsoft's failure modes and CSA's 12 categories work best as red-team lenses to test policy coverage; Rule of Two / lethal trifecta work as structural meta-policies (flag any agent configuration that holds all three capabilities at once).
 
 

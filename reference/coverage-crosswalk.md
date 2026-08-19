@@ -12,6 +12,14 @@ today? Statuses use the catalog's own honesty tiers, plus one this file adds:
 - **out of scope** — not addressable by a repo-local tool governing coding agents, and
   declared so rather than silently omitted.
 
+## Citation rule
+
+Every row cites the framework it maps: entry IDs are the publisher's, each section
+links its canonical source, and full per-framework citations (publisher, version,
+date, URL) live in the [ledger](agentic-threat-ledger.md). Catalog policy names link
+resolve in the [chock-catalog](https://github.com/open-coder-ai/chock-catalog) tree.
+A mapping without a citable source on both ends does not ship.
+
 ## Scope statement, first
 
 Chock governs **coding agents working in a git repository**. Its reach is what a repo
@@ -22,6 +30,8 @@ architecture — a repo cannot enforce there. They are listed anyway, because a 
 report that omits what it cannot do is the failure mode this project exists to avoid.
 
 ## OWASP Agentic Top 10 (ASI01–10)
+
+*Source: [OWASP Top 10 for Agentic Applications 2026](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) (v1.0, Dec 2025). Entry IDs and names are OWASP's; full descriptions in the [ledger](agentic-threat-ledger.md).*
 
 | ID | Risk | Catalog answer | Status |
 | :--- | :--- | :--- | :--- |
@@ -46,6 +56,8 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 
 ## OWASP GenAI LLM Top 10 (2026)
 
+*Source: [OWASP GenAI LLM Top 10 2026](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/) (Aug 2026).*
+
 | ID | Risk | Catalog answer | Status |
 | :--- | :--- | :--- | :--- |
 | LLM01 | Prompt Injection | `injection-defense`; slice: `block-invisible-unicode` | enforced (slice) |
@@ -60,6 +72,8 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 | LLM10 | Improper Output Handling | downstream consumers; partial influence via `agent-discipline` only | out of scope (advisory edge) |
 
 ## MITRE ATLAS — coding-agent-relevant techniques
+
+*Source: [MITRE ATLAS](https://atlas.mitre.org) v5.6.0 (May 2026); technique pages at atlas.mitre.org/techniques/&lt;ID&gt;.*
 
 | Technique | Name | Catalog answer | Status |
 | :--- | :--- | :--- | :--- |
