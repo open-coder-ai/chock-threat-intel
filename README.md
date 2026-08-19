@@ -6,9 +6,10 @@
 
 **A weekly digest of agentic-AI threats — scored against an enforceable policy catalog.**
 
+[the threat ledger →](reference/agentic-threat-ledger.md) ·
+[weekly digests →](digests/) ·
 [the framework →](https://github.com/open-coder-ai/chock) ·
-[the policy catalog →](https://github.com/open-coder-ai/chock-catalog) ·
-[latest digest →](digests/)
+[the policy catalog →](https://github.com/open-coder-ai/chock-catalog)
 
 </div>
 
