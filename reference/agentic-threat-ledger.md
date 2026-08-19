@@ -2,6 +2,8 @@
 
 # Agentic Threat Ledger
 
+> **Unofficial compilation — verify at the source.** This ledger aggregates third-party publications; we are not an authorized source for any of them. Every entry cites its publisher — fact-check there before relying on it. See the repository README's Disclaimer.
+>
 > **Citation discipline:** every framework section below carries its publisher, version, publication date, and a link to the canonical source; entry IDs are the publisher's own. Nothing in this file is original claim — it is an index into the cited publications. If an entry has no working citation, it does not belong here.
 
 Every major published AI & agentic-AI threat taxonomy, enumerated entry by entry — OWASP, MITRE, NIST, national cyber agencies, CSA, Microsoft, Google, and the academic aggregators — with versions, canonical links, and a crosswalk for mapping guardrail policies against them.
