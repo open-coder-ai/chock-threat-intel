@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 21 August 2026*
 
 # Agentic Threat Ledger
 
@@ -182,7 +182,7 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### MITRE ATLAS  `MITRE`
 
-**Source:** v5.6.0 · May 2026 (data snapshot v2026.07) · [atlas.mitre.org](https://atlas.mitre.org) · 16 tactics, 101 techniques + 69 sub-techniques (170 entries); the ATT&CK analog for AI systems
+**Source:** v5.6.0 · May 2026 (data snapshot [v2026.07](https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.07), late Jul 2026) · [atlas.mitre.org](https://atlas.mitre.org) · 16 tactics, 102 techniques + 73 sub-techniques (175 entries, per the ledger's own count of the entries enumerated below — see the release page for MITRE's authoritative totals); the ATT&CK analog for AI systems
 
 | ID | Tactic | Description |
 | :--- | :--- | :--- |
@@ -218,8 +218,9 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 - AML.T0053 AI Agent Tool Invocation · T0080 Agent Context Poisoning (Memory / Thread) · T0081 Modify Agent Configuration · T0083 Credentials from Agent Configuration · T0084 Discover Agent Configuration (Knowledge / Tool Definitions / Triggers / Call Chains)
 - T0086 Exfiltration via Agent Tool Invocation · T0098 Agent Tool Credential Harvesting · T0099 Agent Tool Data Poisoning · T0100 AI Agent Clickbait (baiting computer-use agents) · T0101 Data Destruction via Tool Invocation
-- T0103 Deploy AI Agent (attacker-launched agents) · T0104 Publish Poisoned Agent Tool · T0108 Agent as C2 channel · T0110 Agent Tool Poisoning (incl. MCP) · T0105 Escape to Host · T0112 Machine Compromise (Local AI Agent)
-- Supply chain: T0010.005 Supply Chain Compromise: Agent Tool · T0109 Supply Chain Rug Pull · T0111 Reputation Inflation · T0034.002 Cost Harvesting: Agentic Resource Consumption
+- T0103 Deploy AI Agent (attacker-launched agents) · T0104 Publish Poisoned Agent Tool · T0108 Agent as C2 channel · T0110 Agent Tool Poisoning (incl. MCP) — sub-techniques T0110.000 Definition and Instructions, T0110.001 Implementation, T0110.002 Runtime Response (added v2026.07) · T0105 Escape to Host · T0112 Machine Compromise (Local AI Agent)
+- T0018.003 Manipulate AI Model: Modify Prompt Construction Logic (sub-technique of T0018, added v2026.07)
+- Supply chain: T0010.005 Supply Chain Compromise: Agent Tool · T0109 Supply Chain Rug Pull · T0111 Reputation Inflation · T0115 Publish Poisoned AI Artifacts (added v2026.07; consolidates the former separate poisoned-dataset/poisoned-model publishing techniques) · T0034.002 Cost Harvesting: Agentic Resource Consumption
 
 
 ### NIST AI 100-2e2025 — Adversarial ML Taxonomy  `NIST`
@@ -570,7 +571,10 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 | AML.T0105 | Escape to Host | sandboxing concern; guards raise the default-path floor only | out of scope (declared honestly in every guard's prose) |
 | AML.T0109 | Supply-Chain Rug Pull | `block-unpinned-agent-components`; hash-pinned catalog installs (`chock.lock`) | enforced (slice) |
 | AML.T0110 | Agent Tool Poisoning (incl. MCP) | [`verify-mcp-allowlist`](https://github.com/open-coder-ai/chock-catalog/issues/1) | `policy wanted` |
+| AML.T0110.000–.002 | Agent Tool Poisoning sub-techniques (Definition and Instructions / Implementation / Runtime Response) | inherits T0110's status: [`verify-mcp-allowlist`](https://github.com/open-coder-ai/chock-catalog/issues/1) | `policy wanted` |
 | AML.T0112 | Machine Compromise via Local Agent | `block-unsafe-code-execution`, `block-destructive-commands` slices | enforced (slice) |
+| AML.T0115 | Publish Poisoned AI Artifacts | `block-unpinned-agent-components`; hash-pinned catalog installs (`chock.lock`) — same mechanism as T0109 | enforced (slice) |
+| AML.T0018.003 | Manipulate AI Model: Modify Prompt Construction Logic | adjacent to `protect-agent-config`, but that guard covers designated config paths only, not arbitrary prompt-construction code — no linked issue yet | `policy wanted` |
 
 ## The rest of the ledger, honestly
 
@@ -600,4 +604,4 @@ the front door.
 
 ---
 
-Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously.
+Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing.
