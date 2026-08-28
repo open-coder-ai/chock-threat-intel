@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026 · last updated 21 August 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 28 August 2026*
 
 # Agentic Threat Ledger
 
@@ -336,7 +336,9 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 
 ### Google Secure AI Framework (SAIF)  `Google`
 
-**Source:** Risk map since Oct 2024 · [saif.google](https://saif.google/secure-ai-framework/risks) · 15 risks mapped to four component areas (Data, Infrastructure, Model, Application), split between model creators and consumers
+**Source:** Risk map since Oct 2024, agent-pipeline framing ("SAIF 2.0") added
+[Jan 7, 2026](https://blog.google/innovation-and-ai/technology/safety-security/ai-security-frontier-strategy-tools/)
+· [saif.google](https://saif.google/secure-ai-framework/risks) · 15 risks mapped to four component areas (Data, Infrastructure, Model, Application), split between model creators and consumers; machine-readable data at [github.com/google/saif-data](https://github.com/google/saif-data)
 
 | Risk | Area | Description |
 | :--- | :--- | :--- |
@@ -355,6 +357,18 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 | Model Reverse Engineering | App | Cloning a model from inputs/outputs |
 | Insecure Integrated Component | App | Vulnerable plugins/libraries around the model |
 | Rogue Actions | App | Unintended actions executed by a model-based agent |
+
+> **SAIF 2.0 — agent risk map** ([saif.google/focus-on-agents](https://saif.google/focus-on-agents),
+> announced [Jan 7, 2026](https://blog.google/innovation-and-ai/technology/safety-security/ai-security-frontier-strategy-tools/)):
+> the same 15 risks above, reframed against a four-stage agent pipeline — Application &
+> Perception (input filtering/sanitization), Reasoning Core (adversarially-hardened
+> planning), Orchestration (tools, agent memory, RAG, governed by observability and policy
+> engines), Response Rendering (output normalization/sanitization) — with Rogue Actions as
+> the named agent-specific risk. Confirmed against the open-sourced
+> [`saif-data`](https://github.com/google/saif-data) repo that the risk IDs themselves are
+> unchanged from the 2024 list; the repo's own component schema still carries `Agent/Plugin`
+> as one undivided component, i.e. the four-stage breakdown lives in the web narrative, not
+> yet in the machine-readable data. See [digests/2026-08-28.md](../digests/2026-08-28.md).
 
 
 ### Cloud Security Alliance  `CSA`
@@ -604,4 +618,4 @@ the front door.
 
 ---
 
-Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing.
+Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md).
