@@ -1,8 +1,10 @@
 <div align="center">
 
-<img src=".github/logo.svg" alt="Chock logo" width="90">
+<img src=".github/logo.svg" alt="chock-threat-intel: a weekly digest of agentic-AI threats, each scored against an enforceable policy catalog — what a policy already enforces, what is only advisory, and what is still an open gap. The mark is chock's: a wheel held by a chock wedge." width="90">
 
 # chock-threat-intel
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 **A weekly digest of agentic-AI threats — scored against an enforceable policy catalog.**
 
