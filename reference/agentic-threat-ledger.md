@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026 · last updated 28 August 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 4 September 2026*
 
 # Agentic Threat Ledger
 
@@ -67,6 +67,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 - AIUC-1 Crosswalk (May 2026) — bidirectional mapping between the agentic Top 10 and AIUC-1 compliance requirements
 - AI Security Solutions Landscape for Agentic AI Q2 2026 — vendor/tooling map across the agentic lifecycle
 - FinBot Agentic AI CTF (Aug 2025) — deliberately vulnerable agentic app for hands-on practice
+- [Agent Control Standard (ACS)](https://github.com/GenAI-Security-Project/agent-control-standard) v0.1 Public Preview — donated to the OWASP GenAI Security Project, announced [Sep 1, 2026](https://genai.owasp.org/2026/09/01/owasp-genai-security-project-unveils-2026-top-10-for-llm-applications-new-agent-control-standard-and-sponsors-as-community-tops-30000-members/); an open standard (not a threat taxonomy) for runtime agent control — declarative hooks, policy enforcement, and observability (OpenTelemetry/OCSF, plus an Agent Bill of Materials in CycloneDX/SWID/SPDX) across agent frameworks. Roadmap runs through v3; too early-stage to score against, listed for tracking
 
 
 ### GenAI LLM Top 10 2026  `OWASP GenAI`
@@ -182,7 +183,7 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### MITRE ATLAS  `MITRE`
 
-**Source:** v5.6.0 · May 2026 (data snapshot [v2026.07](https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.07), late Jul 2026) · [atlas.mitre.org](https://atlas.mitre.org) · 16 tactics, 102 techniques + 73 sub-techniques (175 entries, per the ledger's own count of the entries enumerated below — see the release page for MITRE's authoritative totals); the ATT&CK analog for AI systems
+**Source:** v5.6.0 · May 2026 (data snapshot [v2026.08](https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.08), Sep 1, 2026) · [atlas.mitre.org](https://atlas.mitre.org) · 16 tactics, 114 techniques + 83 sub-techniques (197 entries; confirmed directly from the [ATLAS-2026.08.yaml](https://github.com/mitre-atlas/atlas-data/blob/main/dist/v6/ATLAS-2026.08.yaml) machine-readable data, up from 178 in v2026.07); the ATT&CK analog for AI systems
 
 | ID | Tactic | Description |
 | :--- | :--- | :--- |
@@ -198,7 +199,7 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 | AML.TA0008 | Discovery | Figure out the AI environment |
 | AML.TA0015 | Lateral Movement | Move through the AI environment |
 | AML.TA0009 | Collection | Gather AI artifacts and related information |
-| AML.TA0001 | AI Attack Staging | Leverage knowledge/access to tailor the attack |
+| AML.TA0001 | AI Attack Adaptation | Leverage knowledge/access to tailor the attack (renamed from "AI Attack Staging" in [v2026.08](https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.08), Sep 1, 2026) |
 | AML.TA0014 | Command and Control | Communicate with compromised AI systems to control them |
 | AML.TA0010 | Exfiltration | Steal AI artifacts or information about the AI system |
 | AML.TA0011 | Impact | Manipulate, interrupt, erode confidence in, or destroy AI systems and data |
@@ -221,6 +222,15 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 - T0103 Deploy AI Agent (attacker-launched agents) · T0104 Publish Poisoned Agent Tool · T0108 Agent as C2 channel · T0110 Agent Tool Poisoning (incl. MCP) — sub-techniques T0110.000 Definition and Instructions, T0110.001 Implementation, T0110.002 Runtime Response (added v2026.07) · T0105 Escape to Host · T0112 Machine Compromise (Local AI Agent)
 - T0018.003 Manipulate AI Model: Modify Prompt Construction Logic (sub-technique of T0018, added v2026.07)
 - Supply chain: T0010.005 Supply Chain Compromise: Agent Tool · T0109 Supply Chain Rug Pull · T0111 Reputation Inflation · T0115 Publish Poisoned AI Artifacts (added v2026.07; consolidates the former separate poisoned-dataset/poisoned-model publishing techniques) · T0034.002 Cost Harvesting: Agentic Resource Consumption
+
+
+**v2026.08 expansion** (Sep 1, 2026 — 19 new technique/sub-technique IDs, largest single-release addition since the agentic buildout began; confirmed directly against [ATLAS-2026.08.yaml](https://github.com/mitre-atlas/atlas-data/blob/main/dist/v6/ATLAS-2026.08.yaml))
+
+- AML.T0116 Autonomous Reconnaissance · T0117 Autonomous Attack-Path Adaptation · T0124 Autonomous Attack Orchestration (agent-driven recon, path replanning, and multi-sub-agent operational control toward an adversary objective)
+- AML.T0118 Autonomous AI Agent Communication — sub-techniques T0118.000 Communication via Shared Artifacts, T0118.001 Direct Agent Communication (agents exchanging discoveries, tasking, or credentials with peer/sub-agents)
+- AML.T0016.004 & T0017.002 AI Agent Tools (obtaining vs. developing malicious tools/tool servers that extend an agent's capabilities) · T0016.003 Exploits · T0017.001 Autonomous Exploit Development (agent-driven vulnerability discovery and exploit adaptation with limited human direction)
+- AML.T0121 AI Agent Environment Reconstruction (an agent recreating tools, access paths, or coordination state after its execution environment is lost or reset)
+- AML.T0119 Exploit Automated Artifact Processing Pipeline · T0120 AI Artifact Repository (repurposed as an async C2 channel) · T0122 Exploitation of Remote Services · T0123 Obfuscated Files or Information · T0125 Create Account · T0126 Automated Collection · T0127 Data Staged · T0128 Compromise Infrastructure (general ATT&CK-lineage tradecraft newly modeled against AI-system infrastructure)
 
 
 ### NIST AI 100-2e2025 — Adversarial ML Taxonomy  `NIST`
@@ -407,6 +417,16 @@ Microsoft's failure-mode taxonomy is the most detailed agent-specific enumeratio
 - 4 Internal network access via web-reader SSRF · 5 Data exfiltration via mounted volumes · 6 Service-account token theft via cloud metadata endpoints
 - 7 SQL injection through tool parameters · 8 Broken object-level authorization (BOLA) via tool requests · 9 Indirect prompt injection exfiltrating conversation history
 
+> **Field validation — [An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation](https://unit42.paloaltonetworks.com/ai-assisted-cyber-attack-inside-a-unit-42-investigation/)**
+> (published ~[Sep 3, 2026](https://www.resultsense.com/news/2026-09-03-ai-agent-ransomware-unit42)):
+> a real incident report, not a new numbered scenario in the framework above — a human attacker directed
+> frontier-model agents through an automated attack loop, compressing what the report describes as weeks
+> of methodical intrusion tradecraft (50+ MITRE ATT&CK/ATLAS-style techniques) into under 10 hours,
+> including autonomous internal mapping, source-repository access, and root-credential seizure. Read
+> alongside MITRE ATLAS's new [v2026.08](https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.08)
+> autonomous-operation techniques (T0116, T0117, T0124 above) as real-world corroboration of that release's
+> framing, not a citation for a new taxonomy entry of its own.
+
 
 ### Lab principles & structural rules  `Meta · OpenAI · Anthropic`
 
@@ -571,11 +591,13 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 
 ## MITRE ATLAS — coding-agent-relevant techniques
 
-*Source: [MITRE ATLAS](https://atlas.mitre.org) v5.6.0 (May 2026); technique pages at atlas.mitre.org/techniques/&lt;ID&gt;.*
+*Source: [MITRE ATLAS](https://atlas.mitre.org) v5.6.0, data snapshot [v2026.08](https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.08) (Sep 1, 2026); technique pages at atlas.mitre.org/techniques/&lt;ID&gt;.*
 
 | Technique | Name | Catalog answer | Status |
 | :--- | :--- | :--- | :--- |
 | AML.T0051 | LLM Prompt Injection | `injection-defense`; slice: `block-invisible-unicode` | enforced (slice) |
+| AML.T0118, .000–.001 | Autonomous AI Agent Communication (added v2026.08) | `owasp-asi07-insecure-inter-agent-communication` | advisory |
+| AML.T0016.004, T0017.002 | AI Agent Tools — obtaining/developing malicious agent tools (added v2026.08) | `block-unpinned-agent-components`; hash-pinned catalog installs (`chock.lock`) — same mechanism as T0109/T0115 | enforced (slice) |
 | AML.T0080 | Agent Context Poisoning | `memory-discipline`, `owasp-asi06-…` | advisory |
 | AML.T0081 | Modify Agent Configuration | `protect-agent-config` (approval-marker guard over agent config paths) | enforced (slice) |
 | AML.T0083 | Credentials from Agent Configuration | `scan-secrets` | enforced (slice) |
@@ -592,6 +614,12 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 
 ## The rest of the ledger, honestly
 
+- **MITRE ATLAS v2026.08's other new techniques** — T0116, T0117, T0119, T0120, T0121, T0122, T0123,
+  T0124, T0125, T0126, T0127, T0128, T0016.003, T0017.001 describe attacker-side reconnaissance,
+  exploitation, C2, collection, and infrastructure tradecraft (the adversary's own agent conducting recon
+  or an agent recovering after its execution environment is lost). A repo-local guard on a coding agent's
+  tool calls cannot detect an adversary's autonomous operations against systems outside the repo it
+  governs — out of scope, same rationale as AML.T0105 above.
 - **OWASP Data Security (DSGAI01–21)** — mostly platform/data-pipeline scope. In
   reach: DSGAI02 (credential exposure → `scan-secrets`, `protect-agent-config`),
   DSGAI06 (tool exchange boundaries → the guard family). The other nineteen are out of
@@ -609,8 +637,8 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 
 Of the ledger's 400+ entries, the slice a repo-local governance tool can
 deterministically enforce is small — today: **12 enforced policies covering slices of
-~14 framework entries, ~20 advisory policies, 3 open `policy wanted` items, everything
-else declared out of scope**. That statement is the product working as designed: the
+~16 framework entries, ~20 advisory policies covering ~1 more, 3 open `policy wanted`
+items, everything else declared out of scope**. That statement is the product working as designed: the
 alternative — a matrix of green checkmarks across all 22 frameworks — is exactly the
 overclaim this repo exists to refuse. Want a gap closed? The
 [`policy wanted` issues](https://github.com/open-coder-ai/chock-catalog/issues) are
@@ -618,4 +646,4 @@ the front door.
 
 ---
 
-Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md).
+Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md). Updated 4 September 2026: MITRE ATLAS v2026.08 (Sep 1, 2026) folded in — 19 new technique/sub-technique IDs and one tactic rename, confirmed directly against the machine-readable release data; the OWASP Agent Control Standard (donated Sep 1, 2026) added as a tracked companion document; Unit 42's Sep 2026 AI-assisted-attack investigation added as field validation under the existing Unit 42 section — see [digests/2026-09-04.md](../digests/2026-09-04.md) for the full delta and sourcing.
