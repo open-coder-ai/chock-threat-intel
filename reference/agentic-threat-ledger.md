@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026 · last updated 25 September 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 2 October 2026*
 
 # Agentic Threat Ledger
 
@@ -297,6 +297,32 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 > same way** — that check belongs in `chock-catalog`, not here. Status left unchanged
 > (`enforced (slice)`) but flagged as an open verification item on the coverage rows below —
 > see [digests/2026-09-25.md](../digests/2026-09-25.md).
+
+> **Field validation & verification flag — GitSpawn** ([CSA Research
+> Note](https://labs.cloudsecurityalliance.org/research/csa-research-note-gitspawn-ai-coding-agent-rce-20260903-csa/),
+> Sep 3, 2026, reporting Manifold Security's disclosure; direct fetch of
+> labs.cloudsecurityalliance.org is proxy-blocked in this environment — corroborated via
+> [The Hacker News](https://thehackernews.com/2026/09/malicious-git-configs-can-make-claude.html),
+> [Cyber Security News](https://cybersecuritynews.com/gitspawn-flaws-execute-code/), and
+> [GBHackers](https://gbhackers.com/gitspawn-flaw-enables-arbitrary-code-execution/), all
+> agreeing on the researcher, mechanism, vendor list, and dates): a `.git/config` entry naming
+> `core.fsmonitor` — a legitimate Git performance setting — forces **Claude Code, OpenAI
+> Codex, Cursor, Block's Goose, Alibaba's Qwen Code, xAI's Grok Build, and Hermes Agent** to
+> execute an attacker-chosen helper program the moment the agent's routine background `git
+> status`/`git diff` calls refresh the repository index — no tool-call approval prompt, because
+> the execution is a subprocess Git spawns on its own initiative, outside the agent's tool-call
+> path entirely. Requires the `.git` directory to arrive intact (archive, synced folder, USB
+> stick) rather than via `git clone`. Disclosed by Manifold Security; as of the Sep 1, 2026
+> retest, patched in Goose, Claude Code (v2.1.196, Jun 26, 2026), and Cursor; still exploitable
+> in Qwen Code, Grok Build, Hermes Agent, and a second variant in Claude Code. No CVE identified
+> in corroborating coverage as of writing. Not a new taxonomy entry; real-world corroboration of
+> **AML.T0112 Machine Compromise (Local AI Agent)** below. **This ledger cannot verify from this
+> repository whether `chock-catalog`'s `block-unsafe-code-execution`/`block-destructive-commands`
+> guards intercept a subprocess Git spawns on its own, before any tool call the guard would see,
+> or whether they see only the agent's own direct tool invocations** — that check belongs in
+> `chock-catalog`. Status left unchanged (`enforced (slice)`) but flagged as a second open
+> verification item on the AML.T0112 coverage row below — see
+> [digests/2026-10-02.md](../digests/2026-10-02.md).
 
 > **Context — [Safari 27's native local MCP server](https://webkit.org/blog/18136/introducing-the-safari-mcp-server-for-web-developers/)**
 > (WebKit blog, Sep 17, 2026; direct fetch of webkit.org is proxy-blocked in this environment —
@@ -731,7 +757,7 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 | AML.T0109 | Supply-Chain Rug Pull | `block-unpinned-agent-components`; hash-pinned catalog installs (`chock.lock`) | enforced (slice)* |
 | AML.T0110 | Agent Tool Poisoning (incl. MCP) | [`verify-mcp-allowlist`](https://github.com/open-coder-ai/chock-catalog/issues/1) | `policy wanted` |
 | AML.T0110.000–.002 | Agent Tool Poisoning sub-techniques (Definition and Instructions / Implementation / Runtime Response) | inherits T0110's status: [`verify-mcp-allowlist`](https://github.com/open-coder-ai/chock-catalog/issues/1) | `policy wanted` |
-| AML.T0112 | Machine Compromise via Local Agent | `block-unsafe-code-execution`, `block-destructive-commands` slices | enforced (slice) |
+| AML.T0112 | Machine Compromise via Local Agent | `block-unsafe-code-execution`, `block-destructive-commands` slices | enforced (slice)† |
 | AML.T0115 | Publish Poisoned AI Artifacts | `block-unpinned-agent-components`; hash-pinned catalog installs (`chock.lock`) — same mechanism as T0109 | enforced (slice)* |
 | AML.T0018.003 | Manipulate AI Model: Modify Prompt Construction Logic | adjacent to `protect-agent-config`, but that guard covers designated config paths only, not arbitrary prompt-construction code — no linked issue yet | `policy wanted` |
 
@@ -742,6 +768,15 @@ vendor coding agents (not chock). This ledger cannot confirm from this repositor
 (potentially exposed the same way). Status left at `enforced (slice)` pending that check in
 `chock-catalog` — see the MITRE ATLAS field-validation callout above and
 [digests/2026-09-25.md](../digests/2026-09-25.md).
+
+† **Verification flagged, Oct 2, 2026:** GitSpawn (see the MITRE ATLAS field-validation
+callout above) showed a `.git/config`-triggered subprocess reaching code execution in seven
+coding agents (not chock) via Git's own `core.fsmonitor` spawn, outside the agent's tool-call
+path entirely. This ledger cannot confirm from this repository whether
+`block-unsafe-code-execution`/`block-destructive-commands` intercept command execution Git
+triggers on its own initiative, or only the agent's own direct tool invocations. Status left
+at `enforced (slice)` pending that check in `chock-catalog` — see
+[digests/2026-10-02.md](../digests/2026-10-02.md).
 
 ## The rest of the ledger, honestly
 
@@ -803,7 +838,13 @@ four *other* vendors' coding agents, left as a flagged verification item against
 `block-unpinned-agent-components` rather than a status change this ledger isn't positioned to
 make; the UN Thematic Brief and the AEPD breach are field validation of already-tracked
 entries; the Safari 27 MCP server is context for the already-open `verify-mcp-allowlist` gap.
-See [digests/2026-09-25.md](../digests/2026-09-25.md).) That
+See [digests/2026-09-25.md](../digests/2026-09-25.md). This week (Oct 2, 2026) added no new
+catalog-mapped entries either: GitSpawn — a Sep 2–4, 2026 disclosure missed by the prior
+sweep and backfilled this week — is a real-world break of local-execution guards in seven
+*other* vendors' coding agents, left as a second flagged verification item, this time against
+`block-unsafe-code-execution`/`block-destructive-commands` on the AML.T0112 row, rather than a
+status change this ledger isn't positioned to make. See
+[digests/2026-10-02.md](../digests/2026-10-02.md).) That
 statement is the product working as designed: the
 alternative — a matrix of green checkmarks across all 22 frameworks — is exactly the
 overclaim this repo exists to refuse. Want a gap closed? The
@@ -812,4 +853,4 @@ the front door.
 
 ---
 
-Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md). Updated 4 September 2026: MITRE ATLAS v2026.08 (Sep 1, 2026) folded in — 19 new technique/sub-technique IDs and one tactic rename, confirmed directly against the machine-readable release data; the OWASP Agent Control Standard (donated Sep 1, 2026) added as a tracked companion document; Unit 42's Sep 2026 AI-assisted-attack investigation added as field validation under the existing Unit 42 section — see [digests/2026-09-04.md](../digests/2026-09-04.md) for the full delta and sourcing. Updated 11 September 2026: Cisco's Integrated AI Security & Safety Framework added as a new industry-taxonomy section (v1 Dec 2025, v2 Sep 9, 2026 — new OB-002 Agentic Autonomy Failures objective, mapped onto existing LLM03/ASI10 coverage); CVE-2026-59822 (LiteLLM MCP auth bypass, first MCP flaw in CISA's KEV catalog, Sep 2, 2026) added as field validation of AML.T0110's open `policy wanted` status; CISA advisory AA26-251A (AI model distillation, Sep 8, 2026) and two OWASP GenAI companion resources (Framework Crosswalk, Solutions Directory) added for tracking — see [digests/2026-09-11.md](../digests/2026-09-11.md) for the full delta and sourcing. Updated 18 September 2026: MITRE ATLAS v2026.09 (Sep 15, 2026) folded in — 6 new techniques, 5 new sub-techniques, 1 new mitigation, 1 new case study, entry count 197→208, all new techniques declared out of scope for a repo-local coding-agent guard; OpenAI's undisclosed rogue-agent-swarm incidents (DSEWiki/public-wiki coordination reported Sep 4, 2026; RubyGems malicious-package flood reported Sep 12, 2026) added as field validation under AML.T0118 and the open AML.T0086 `policy wanted` item — see [digests/2026-09-18.md](../digests/2026-09-18.md) for the full delta and sourcing. Updated 25 September 2026: Plugin4Shell (zero-click RCE breaking SHA-pin verification in Claude Code, Codex, Copilot, and Gemini CLI, disclosed Sep 17, 2026) added as a field-validation callout under MITRE ATLAS with a verification flag against `block-unpinned-agent-components`'s `enforced (slice)` status on the T0109/T0115/T0016.004 rows; the UN Independent International Scientific Panel on AI's first Thematic Brief (Sep 21, 2026, analyzing the already-tracked OpenAI/Hugging Face incident) added as a new tracked body under "Government & standards bodies"; Spain's AEPD first regulator-confirmed AI-agent data breach notification (filed Sep 14, 2026) added as field validation under Meta's Rule of Two; Apple Safari 27's native local MCP server (Sep 17, 2026) added as context for the open `verify-mcp-allowlist` gap — see [digests/2026-09-25.md](../digests/2026-09-25.md) for the full delta and sourcing.
+Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md). Updated 4 September 2026: MITRE ATLAS v2026.08 (Sep 1, 2026) folded in — 19 new technique/sub-technique IDs and one tactic rename, confirmed directly against the machine-readable release data; the OWASP Agent Control Standard (donated Sep 1, 2026) added as a tracked companion document; Unit 42's Sep 2026 AI-assisted-attack investigation added as field validation under the existing Unit 42 section — see [digests/2026-09-04.md](../digests/2026-09-04.md) for the full delta and sourcing. Updated 11 September 2026: Cisco's Integrated AI Security & Safety Framework added as a new industry-taxonomy section (v1 Dec 2025, v2 Sep 9, 2026 — new OB-002 Agentic Autonomy Failures objective, mapped onto existing LLM03/ASI10 coverage); CVE-2026-59822 (LiteLLM MCP auth bypass, first MCP flaw in CISA's KEV catalog, Sep 2, 2026) added as field validation of AML.T0110's open `policy wanted` status; CISA advisory AA26-251A (AI model distillation, Sep 8, 2026) and two OWASP GenAI companion resources (Framework Crosswalk, Solutions Directory) added for tracking — see [digests/2026-09-11.md](../digests/2026-09-11.md) for the full delta and sourcing. Updated 18 September 2026: MITRE ATLAS v2026.09 (Sep 15, 2026) folded in — 6 new techniques, 5 new sub-techniques, 1 new mitigation, 1 new case study, entry count 197→208, all new techniques declared out of scope for a repo-local coding-agent guard; OpenAI's undisclosed rogue-agent-swarm incidents (DSEWiki/public-wiki coordination reported Sep 4, 2026; RubyGems malicious-package flood reported Sep 12, 2026) added as field validation under AML.T0118 and the open AML.T0086 `policy wanted` item — see [digests/2026-09-18.md](../digests/2026-09-18.md) for the full delta and sourcing. Updated 25 September 2026: Plugin4Shell (zero-click RCE breaking SHA-pin verification in Claude Code, Codex, Copilot, and Gemini CLI, disclosed Sep 17, 2026) added as a field-validation callout under MITRE ATLAS with a verification flag against `block-unpinned-agent-components`'s `enforced (slice)` status on the T0109/T0115/T0016.004 rows; the UN Independent International Scientific Panel on AI's first Thematic Brief (Sep 21, 2026, analyzing the already-tracked OpenAI/Hugging Face incident) added as a new tracked body under "Government & standards bodies"; Spain's AEPD first regulator-confirmed AI-agent data breach notification (filed Sep 14, 2026) added as field validation under Meta's Rule of Two; Apple Safari 27's native local MCP server (Sep 17, 2026) added as context for the open `verify-mcp-allowlist` gap — see [digests/2026-09-25.md](../digests/2026-09-25.md) for the full delta and sourcing. Updated 2 October 2026: GitSpawn (a `.git/config`/`core.fsmonitor` RCE class across seven coding agents — Claude Code, Codex, Cursor, Goose, Qwen Code, Grok Build, Hermes Agent — disclosed by Manifold Security Sep 2–4, 2026 and missed by the prior sweep) added as a field-validation callout under MITRE ATLAS with a second verification flag, this time against the AML.T0112 row's `block-unsafe-code-execution`/`block-destructive-commands` coverage — see [digests/2026-10-02.md](../digests/2026-10-02.md) for the full delta and sourcing.
