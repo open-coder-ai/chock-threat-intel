@@ -1,27 +1,45 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/cover-chock-threat-intel.png" alt="chock-threat-intel: a weekly, human-reviewed ledger of agentic-AI threats, each scored against what the Chock catalog enforces." width="760">
-
-# Teach your AI agent what not to do.
-
-**Open-source guardrails for AI coding agents: rules the agent reads, checks that run as it writes, and gates at commit and in CI. This repo is the weekly threat ledger those policies answer to.**
-
-[the threat ledger →](reference/agentic-threat-ledger.md) ·
-[weekly digests →](digests/) ·
-[the framework →](https://github.com/open-coder-ai/chock) ·
-[the policy catalog →](https://github.com/open-coder-ai/chock-catalog)
+<p><img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/cover-chock-threat-intel.png" alt="chock-threat-intel: every new agentic threat, scored against a policy, in a weekly human-reviewed ledger marked enforced, advisory or policy wanted." width="100%"></p>
 
 </div>
 
-**What this is.** chock-threat-intel is a human-reviewed, weekly compilation of published agentic-AI threat frameworks (OWASP, MITRE ATLAS, NIST, CISA, the Cloud Security Alliance and others), each entry scored against what the [Chock catalog](https://github.com/open-coder-ai/chock-catalog) does about it: enforced for a slice, advisory, `policy wanted`, or out of scope. Chock is open-source application security for code written by AI coding agents, with deterministic local checks, no model and no upload.
+<details><summary>Text version</summary>
+
+# Teach your AI agent what not to do.
+
+Open-source guardrails for AI coding agents: rules the agent reads, checks that run as it writes, and gates at commit and in CI. This repo is the weekly threat ledger those policies answer to.
+
+[chock](https://github.com/open-coder-ai/chock) · [chock-catalog](https://github.com/open-coder-ai/chock-catalog) · chock.sh (launching soon)
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
+chock-threat-intel is a human-reviewed, weekly compilation of published agentic-AI threat frameworks (OWASP, MITRE ATLAS, NIST, CISA, the Cloud Security Alliance and others), each entry scored against what the [Chock catalog](https://github.com/open-coder-ai/chock-catalog) does about it: enforced for a slice, advisory, `policy wanted`, or out of scope. Chock is open-source application security for code written by AI coding agents, with deterministic local checks, no model and no upload. Start with [the threat ledger](reference/agentic-threat-ledger.md) or the [weekly digests](digests/).
 
 > **Unofficial compilation, verify at the source.** We are not an authoritative source for the frameworks cited here. Full disclaimer: [`docs/README.md`](docs/README.md).
+
+</details>
+
+<p><img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/appsec.png" alt="Nine areas Chock checks, application security first, each with the policies that cover it and whether they enforce at commit, in the agent, or only advise." width="100%"></p>
+<details><summary>Text version</summary>
 
 ## Application security for the code your agents write
 
 Chock's policies exist because agents write code, run commands and install tools, and published threats describe how that goes wrong. This ledger is the list the catalog is checked against, so a gap is visible rather than implied. It does not stop any attack itself: the policies live in the [catalog](https://github.com/open-coder-ai/chock-catalog), and the ledger says which threats they reach and which they do not.
 
-## This week: [2026-10-02 digest](digests/2026-10-02.md)
+| Area | What gets refused | Policy | Tier |
+| :--- | :--- | :--- | :--- |
+| Java & Kotlin | injection, XXE, SSRF, unsafe deserialization, weak crypto, dependencies below a known fix | `java-security` | commit |
+| Unsafe code, IAM | `eval`, `shell=True`, `os.system`, `pickle`; IAM `Action: *` | `block-unsafe-code-execution`, `block-wildcard-iam` | commit |
+| Supply chain | dependencies off an allowlist, Actions on a mutable tag, MCP servers and images at `@latest` | `verify-dependency-exists`, `pin-github-actions`, `block-unpinned-agent-components` | commit |
+| Agent code | host execution, unpinned MCP servers, approvals switched off, credential leaks | `agentic-code-security` | commit |
+| OWASP Agentic Top 10 | a policy for each of ASI01 to ASI10; 7 have a slice refused at commit; 0 are fully covered | `owasp-asi01-agent-goal-hijack` to `owasp-asi10-rogue-agents` | advisory |
+| Accessibility | a stripped `alt`, `aria-label`, label or `lang` | `no-a11y-regression` | commit |
+| Prompt injection, memory | bidi and tag characters; secrets written into agent memory | `block-invisible-unicode`, `guard-memory-writes` | commit |
+| Test integrity | deleted tests, lost assertions, new skips | `protect-test-integrity` | commit |
+| Also included | secrets, destructive commands, agent self-protection | `scan-secrets`, `block-destructive-commands`, `protect-agent-config` | commit, in-agent |
+
+### This week: [2026-10-02 digest](digests/2026-10-02.md)
 
 The week's one substantive addition is a backfill: **GitSpawn**, a class in which a repository's own `.git/config` makes a command-line coding agent run attacker-chosen code through `core.fsmonitor`, disclosed on Sep 2–4, 2026 and affecting seven agents (per the Cloud Security Alliance research notes, corroborated by press). The digest records no new catalog-mapped entries and flags a verification item against the local-execution guards.
 
@@ -32,27 +50,33 @@ The week's one substantive addition is a backfill: **GitSpawn**, a class in whic
 
 Every weekly digest is in [`digests/`](digests/). Each is dated and immutable.
 
+</details>
+
 ## Install
 
-The ledger needs no install. To put the policies it points at into your own repo, install the frozen engine (not on PyPI; Python 3.11 or newer):
+chock is on PyPI, but the release there (0.15.2, 30 Sep 2026) is older than the engine this page describes. Install the frozen engine from its commit (Python 3.11 or newer):
 
 ```bash
 pip install "chock @ git+https://github.com/open-coder-ai/chock@992711af4cf8d4fd9c4c861f10ef6e53374d75d7"
 ```
 
-## Two ways to adopt
+<p><img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/adopt.png" alt="Two adoption routes: in your repository with chock init, chock add and chock sync, or in your coding agent as plugins." width="100%"></p>
+<details><summary>Text version</summary>
 
-<img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/adopt.png" alt="The two adoption routes: policies installed in your repository, or Chock plugins installed in your coding agent." width="760">
+### Two ways to adopt it
 
-| | In your repository (for teams) | In your coding agent, as plugins |
-| :--- | :--- | :--- |
-| Steps | `chock init .`, then `chock add <id> --ref <catalog commit> --verify-sha <sha256> --skip-compile` for each policy, then `chock sync --repo . --ci` | Install the plugin for your client from its repo (below) |
-| Where it runs | Your agent's hook where its client has one, at commit, and in CI | The client's pre-tool hook only |
-| Strength | The commit gates are enforced at commit and in CI. Commit the result; every clone runs `chock sync --repo .` once, because git never clones hooks | Best-effort: the client's hook fails open, and it does not run in CI |
+The ledger itself needs no install. To put the policies it points at into your own repo:
 
-Plugin repos, with per-client install lines in each README: [Claude Code](https://github.com/open-coder-ai/chock-claude-plugins), [Copilot](https://github.com/open-coder-ai/chock-copilot-plugins), [Cursor](https://github.com/open-coder-ai/chock-cursor-plugins), [Codex](https://github.com/open-coder-ai/chock-codex-plugins), [Devin](https://github.com/open-coder-ai/chock-devin-plugins). Templates: [chock-quickstart](https://github.com/open-coder-ai/chock-quickstart) and [chock-example](https://github.com/open-coder-ai/chock-example). A third route, one Claude Code plugin from a selection of policies, comes from the chock.sh builder (launching soon).
+1. **In your repository, for teams.** Run `chock init .`, then `chock add <id> --ref <catalog commit> --verify-sha <sha256> --skip-compile` for each policy, then `chock sync --repo . --ci`. Commit the result. Every clone runs `chock sync --repo .` once, because git never clones hooks. The commit gates are enforced at commit and in CI.
+2. **In your coding agent, as plugins.** Best-effort, and they fail open: the client's hook does not run in CI. One repo per client: [Claude Code](https://github.com/open-coder-ai/chock-claude-plugins), [Copilot](https://github.com/open-coder-ai/chock-copilot-plugins), [Cursor](https://github.com/open-coder-ai/chock-cursor-plugins), [Codex](https://github.com/open-coder-ai/chock-codex-plugins), [Devin](https://github.com/open-coder-ai/chock-devin-plugins). Each README has the install line for its client. Templates: [chock-quickstart](https://github.com/open-coder-ai/chock-quickstart) and [chock-example](https://github.com/open-coder-ai/chock-example).
+3. **One Claude Code plugin from a selection.** The chock.sh builder (launching soon) gives a `chock install --selection '…' --apply` command.
 
-## How it works: the ledger and its tags
+</details>
+
+<p><img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/honest.png" alt="Guardrails, not guarantees: the three tiers, no matrix cell graded enforced, and no OWASP Agentic risk fully covered." width="100%"></p>
+<details><summary>Text version</summary>
+
+## How it works
 
 - **Weekly sweep.** An automated review checks the published threat frameworks and the week's disclosed agent vulnerabilities, and drafts a delta digest against the running baseline.
 - **Human review before publish.** Every digest lands as a pull request, read and approved by a maintainer before it merges.
@@ -69,13 +93,19 @@ Tags follow the catalog and can lag it between sweeps. For a policy's current ti
 
 | Where | What is there |
 | :--- | :--- |
-| [`reference/agentic-threat-ledger.md`](reference/agentic-threat-ledger.md) | The running ledger, refreshed in place: 14 sections, with a "Chock coverage against this ledger" table and the honest totals |
+| [`reference/agentic-threat-ledger.md`](reference/agentic-threat-ledger.md) | The running ledger, refreshed in place, with a "Chock coverage against this ledger" table and the honest totals |
 | [`digests/`](digests/) | One dated, immutable file per weekly sweep |
 | [`docs/README.md`](docs/README.md) | The disclaimer, how to read a digest, how to contribute a policy |
 
 ## What it stops
 
-This repo stops nothing. It records what the catalog does and does not reach. The ledger states its own scope: of its 400+ entries across 22 frameworks, the slice a repo-local governance tool can deterministically enforce is small, and it declines to show a matrix of green checkmarks. The catalog it scores has 71 policies: 35 enforced at commit, 11 in the agent (best-effort, fails open), 25 advisory (`registry.yaml` at `9a64623`). No agent reaches "enforced" today. Every OWASP Agentic (ASI01–ASI10) risk has at least one catalog policy mapped, and every mapping is partial: [`docs/coverage.md`](https://github.com/open-coder-ai/chock-catalog/blob/main/docs/coverage.md).
+This repo stops nothing. It records what the catalog does and does not reach, and it declines to show a matrix of green checkmarks: the slice a repo-local governance tool can deterministically enforce is small. The catalog it scores has 71 policies: 35 enforced at commit, 11 in the agent (best-effort, fails open), 25 advisory (`registry.yaml` at chock-catalog `f25f5a3`). Every OWASP Agentic (ASI01 to ASI10) risk has at least one catalog policy mapped, 7 of them (ASI01 to ASI05, ASI07, ASI09) with a slice refused at commit, and every mapping is partial: [`docs/coverage.md`](https://github.com/open-coder-ai/chock-catalog/blob/main/docs/coverage.md).
+
+## Guardrails, not guarantees
+
+Tiers: `commit` is a git hook or CI gate that exits non-zero. `in-agent` is the agent's own pre-tool hook: best-effort, and it fails open. `advisory` is rule text the agent reads. No agent reaches `enforced` today. OWASP mappings are partial, none of the 10 Agentic risks is fully covered, and the engine is frozen at the commit above. Chock does not stop every attack: it closes common, known entry points before they ship.
+
+</details>
 
 ## FAQ for people and agents
 
@@ -85,7 +115,7 @@ This repo stops nothing. It records what the catalog does and does not reach. Th
 
 **Which agents does it work with?** See the plugin repos above and the [catalog](https://github.com/open-coder-ai/chock-catalog).
 
-**How do I install it?** See the two routes above.
+**How do I install it?** See [Install](#install).
 
 **What does it cost?** Free and open source (Apache-2.0).
 
@@ -102,7 +132,30 @@ This repo stops nothing. It records what the catalog does and does not reach. Th
 - Plugin `marketplace.json` in each plugin repo above
 - chock.sh `/llms.txt` and `/api/index.json`: launching soon
 
-## Contribute a threat or a fix
+<p><img src="https://raw.githubusercontent.com/open-coder-ai/chock/main/docs/assets/readme/family.png" alt="The 13 public repositories of open-coder-ai: core, policies, evidence, plugins, templates and community files." width="100%"></p>
+<details><summary>Text version</summary>
+
+## Part of open-coder-ai
+
+The 13 public repositories:
+
+| Repository | What it is |
+| :--- | :--- |
+| [agentseam](https://github.com/open-coder-ai/agentseam) | Core: One handler API over every coding agent. |
+| [chock](https://github.com/open-coder-ai/chock) | Core: Author a policy once, enforce it on every agent. |
+| [chock-catalog](https://github.com/open-coder-ai/chock-catalog) | Policies: The policies, each labelled by what it enforces, with replayed evals. |
+| [context-report](https://github.com/open-coder-ai/context-report) | Evidence: A signed report of whether an agent artifact works. |
+| [chock-threat-intel](https://github.com/open-coder-ai/chock-threat-intel) | Evidence: A weekly threat ledger, each entry scored against the catalog. |
+| [chock-claude-plugins](https://github.com/open-coder-ai/chock-claude-plugins) | Plugins: The catalog as Claude Code plugins (generated). |
+| [chock-copilot-plugins](https://github.com/open-coder-ai/chock-copilot-plugins) | Plugins: The catalog as Copilot CLI and VS Code plugins (generated). |
+| [chock-cursor-plugins](https://github.com/open-coder-ai/chock-cursor-plugins) | Plugins: The catalog as Cursor plugins (generated). |
+| [chock-codex-plugins](https://github.com/open-coder-ai/chock-codex-plugins) | Plugins: The catalog as Codex plugins (generated). |
+| [chock-devin-plugins](https://github.com/open-coder-ai/chock-devin-plugins) | Plugins: The catalog as Devin plugins (generated). |
+| [chock-quickstart](https://github.com/open-coder-ai/chock-quickstart) | Template: What chock init leaves behind. |
+| [chock-example](https://github.com/open-coder-ai/chock-example) | Template: A working adoption, one policy per layer. |
+| [.github](https://github.com/open-coder-ai/.github) | Community: Org profile and community health files. |
+
+## Contributing
 
 | You found | Do this |
 | :--- | :--- |
@@ -113,15 +166,6 @@ This repo stops nothing. It records what the catalog does and does not reach. Th
 
 Conventions, including `git commit -s` sign-off, are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Part of open-coder-ai
-
-| Repository | What it is |
-| :--- | :--- |
-| [chock](https://github.com/open-coder-ai/chock) | The framework: write a policy once, enforce it on git hooks, CI and every agent |
-| [chock-catalog](https://github.com/open-coder-ai/chock-catalog) | The policies, each graded by what it actually enforces |
-| [agentseam](https://github.com/open-coder-ai/agentseam) | One handler API over every coding agent's hooks, instruction files and plugin packaging |
-| [context-report](https://github.com/open-coder-ai/context-report) | A signed report format for whether a plugin, hook, skill or `AGENTS.md` works |
-| [chock-claude-plugins](https://github.com/open-coder-ai/chock-claude-plugins) · [copilot](https://github.com/open-coder-ai/chock-copilot-plugins) · [cursor](https://github.com/open-coder-ai/chock-cursor-plugins) · [codex](https://github.com/open-coder-ai/chock-codex-plugins) · [devin](https://github.com/open-coder-ai/chock-devin-plugins) | The catalog compiled into each client's plugin format |
-| [chock-quickstart](https://github.com/open-coder-ai/chock-quickstart) · [chock-example](https://github.com/open-coder-ai/chock-example) | Template repositories: what `chock init` leaves behind, and a working adoption |
-
 Apache-2.0, see [LICENSE](LICENSE). Threat framework names and identifiers belong to their publishers (OWASP, MITRE, NIST and others); each digest links its sources.
+
+</details>
