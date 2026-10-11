@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026 · last updated 6 October 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 10 October 2026*
 
 # Agentic Threat Ledger
 
@@ -297,6 +297,31 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 > same way** — that check belongs in `chock-catalog`, not here. Status left unchanged
 > (`enforced (slice)`) but flagged as an open verification item on the coverage rows below —
 > see [digests/2026-09-25.md](../digests/2026-09-25.md).
+>
+> **Update, Oct 10, 2026: no repo-local guard can verify these pins; the gap stays open.**
+> The [primary write-up](https://www.air.security/blog-posts/plugin4shell) was read in full
+> this week. It confirms the trick: the plugin repo's *default branch* is named exactly the pinned
+> 40-hex SHA (Gemini CLI variant: named `FETCH_HEAD`), so after a clone `git checkout <sha>`
+> resolves the local branch instead of the commit. Vendor status per that write-up: fixed in
+> Claude Code 2.1.179 and Codex 0.146.0; Copilot unfixed; Gemini CLI deprecated, no fix.
+> The catalog researched a `verify-post-checkout` policy (`git rev-parse HEAD` in each plugin
+> checkout compared with the recorded pin) and the owner dropped it, because neither half is
+> on disk for any of the four agents:
+> - **Claude Code** (2.1.296, observed): records `gitCommitSha` per plugin in
+>   `~/.claude/plugins/installed_plugins.json`, but the installed copy under
+>   `~/.claude/plugins/cache/` has no `.git` to compare against ([docs](https://code.claude.com/docs/en/plugins/loading)).
+> - **Codex**: records only the marketplace repo's revision, not each plugin's commit
+>   ([source](https://github.com/openai/codex/tree/cc7ba33601286a751477832b01de7b6f8de0dd9c/codex-rs/core-plugins/src)).
+> - **Copilot CLI** (1.0.95, observed): `installedPlugins[].source_sha` in `~/.copilot/config.json`
+>   is a SHA-256, not the commit, and the installed copy has no `.git`
+>   ([docs](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference)).
+> - **Gemini CLI**: keeps `.git` in each extension, but records only the user's own `--ref`, with no resolved commit
+>   ([source](https://github.com/google-gemini/gemini-cli/tree/9b6e0265d16bbd29ca51e33c9e0c01dc4cec5e83/packages/cli/src/config/extensions)).
+>
+> Also, a catalog gate never fires on an install: script gates judge repository writes, and an
+> install writes none; the shell guard runs before the command, not after it. Protection
+> therefore rests on the vendor fixes. The unpatched Copilot and Gemini CLI installs stay an open gap.
+> The `chock.lock` question below is unchanged and still open.
 
 > **Field validation & verification flag — GitSpawn** ([CSA Research
 > Note](https://labs.cloudsecurityalliance.org/research/csa-research-note-gitspawn-ai-coding-agent-rce-20260903-csa/),
@@ -770,6 +795,11 @@ vendor coding agents (not chock). This ledger cannot confirm from this repositor
 (potentially exposed the same way). Status left at `enforced (slice)` pending that check in
 `chock-catalog` — see the MITRE ATLAS field-validation callout above and
 [digests/2026-09-25.md](../digests/2026-09-25.md).
+**Update, Oct 10, 2026:** a catalog guard that re-checks the agents' own plugin pins was researched and
+dropped: none of the four agents keeps both a recorded pin and a git checkout to compare it with,
+and catalog gates do not fire on installs (details in the callout above). The vendor fixes
+(Claude Code 2.1.179, Codex 0.146.0) are the only remedy. Copilot (unfixed) and Gemini CLI (deprecated)
+remain an open gap. This flag stays open.
 
 † **Verification flagged, Oct 2, 2026:** GitSpawn (see the MITRE ATLAS field-validation
 callout above) showed a `.git/config`-triggered subprocess reaching code execution in seven
