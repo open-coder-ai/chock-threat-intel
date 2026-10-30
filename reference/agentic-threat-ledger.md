@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026 · last updated 16 October 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 30 October 2026*
 
 # Agentic Threat Ledger
 
