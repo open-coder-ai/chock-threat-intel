@@ -1,4 +1,4 @@
-*Threat framework reference · compiled 16 August 2026 · last updated 30 October 2026*
+*Threat framework reference · compiled 16 August 2026 · last updated 20 November 2026*
 
 # Agentic Threat Ledger
 
@@ -60,7 +60,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 ### Companion ASI documents  `OWASP ASI`
 
 - [Multi-Agentic System Threat Modeling Guide v1.0](https://genai.owasp.org/resource/multi-agentic-system-threat-modeling-guide-v1-0/) — applies T1–T15 to real multi-agent architectures using the MAESTRO layered method
-- Securing Agentic Applications Guide — the developer/operator control catalog (concrete controls, not threats)
+- [Securing Agentic Applications V2: A Builder & Defender's Guide](https://genai.owasp.org/resource/securing-agentic-applications-v2/) — the developer/operator control catalog (concrete controls, not threats); supersedes [Securing Agentic Applications Guide v1.0](https://genai.owasp.org/resource/securing-agentic-applications-guide-1-0) (Jul 27, 2025). Observed ~early-to-mid Nov 2026; direct fetch DNS-blocked, exact publish date unconfirmed — see [digests/2026-11-20.md](../digests/2026-11-20.md)
 - A Practical Guide for Secure MCP Server Development (Feb 2026) — for teams building MCP servers
 - CheatSheet: Securely Using Third-Party MCP Servers 1.0 (Nov 2025) — for teams consuming MCP servers
 - State of Agentic AI Security and Governance 2.01 (Jun 2026) — landscape survey; maps real CVEs and breach reports to the ASI categories
@@ -70,6 +70,7 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 - [Agent Control Standard (ACS)](https://github.com/GenAI-Security-Project/agent-control-standard) v0.1 Public Preview — donated to the OWASP GenAI Security Project, announced [Sep 1, 2026](https://genai.owasp.org/2026/09/01/owasp-genai-security-project-unveils-2026-top-10-for-llm-applications-new-agent-control-standard-and-sponsors-as-community-tops-30000-members/); an open standard (not a threat taxonomy) for runtime agent control — declarative hooks, policy enforcement, and observability (OpenTelemetry/OCSF, plus an Agent Bill of Materials in CycloneDX/SWID/SPDX) across agent frameworks. Roadmap runs through v3; too early-stage to score against, listed for tracking
 - [GenAI Security Industry Framework Crosswalk](https://genai.owasp.org/resource/genai-security-industry-framework-crosswalk/) — announced alongside the [Sep 1, 2026](https://genai.owasp.org/2026/09/01/owasp-genai-security-project-unveils-2026-top-10-for-llm-applications-new-agent-control-standard-and-sponsors-as-community-tops-30000-members/) press cycle; maps 51 OWASP GenAI vulnerabilities across four source lists to controls in 25 external frameworks (NIST, ISO, MITRE ATLAS, EU AI Act, and others). A crosswalk tool, not a new threat entry — no coverage-table row
 - [AI Security Solutions Directory](https://genai.owasp.org/ai-security-solutions-landscape/) — companion vendor/tooling directory across the GenAI and agentic security market, announced the same cycle. Landscape mapping, not a threat taxonomy — listed for tracking only
+- [GenAI and Agentic AI Exploit Roundup Q3 2026](https://genai.owasp.org/2026/10/08/genai-and-agentic-ai-exploit-roundup-q3-2026/) (Oct 8, 2026; backfilled this week, missed by the prior sweep) — incidents from Jul 1–Sep 30, 2026 mapped onto the ASI/LLM Top 10s. Incident compilation, not a new taxonomy entry — listed for tracking only. See [digests/2026-11-20.md](../digests/2026-11-20.md)
 
 
 ### GenAI LLM Top 10 2026  `OWASP GenAI`
@@ -117,6 +118,13 @@ The OWASP GenAI Security Project publishes the deepest catalog: the agentic Top 
 | DSGAI19 | Human-in-the-Loop & Labeler Overexposure | RLHF/annotation pipelines exposing raw sensitive data to labeler populations |
 | DSGAI20 | Model Exfiltration & IP Replication | Systematic API probing to distill a proprietary model into an unauthorized student |
 | DSGAI21 | Disinformation via Data Poisoning | Seeding trusted retrieval sources so RAG surfaces false info as authoritative |
+
+**Companion implementation playbook:** [GenAI Data Security Best Practices v2 –
+Part 1](https://genai.owasp.org/resource/genai-data-security-best-practices-v2-part1/)
+(~late Oct 2026) and [Part
+2](https://genai.owasp.org/resource/genai-data-security-best-practices-v2-part2/)
+(~early-to-mid Nov 2026) — control catalog, not threats; direct fetch DNS-blocked,
+exact publish dates unconfirmed. See [digests/2026-11-20.md](../digests/2026-11-20.md)
 
 
 ### AI Exchange — threat matrix  `OWASP flagship`
@@ -476,13 +484,72 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 > T0137 and its four sub-techniques, T0139, T0140, T0141, T0144, and T0145 describe model-training/
 > privacy extraction, attacker account compromise, or attacker-side AI-service infrastructure —
 > same out-of-scope rationale as every prior ATLAS batch (see "The rest of the ledger, honestly"
-> below). **T0138 Indicator Removal, T0142 Event Triggered Execution, and T0143 LLM Prompt
-> Propagation are left unscored, not guessed at:** each is plausibly adjacent to an existing row
-> (T0101 Data Destruction via Tool Invocation; agent trigger configuration under T0084; T0061 LLM
-> Prompt Self-Replication, itself untracked in the coverage table) by name alone, but this sweep
-> could not reach atlas.mitre.org's technique pages (DNS-blocked) to confirm the mechanism well
-> enough to score. Carried as open items for next week. See
-> [digests/2026-10-30.md](../digests/2026-10-30.md).
+> below). See [digests/2026-10-30.md](../digests/2026-10-30.md).
+>
+> **Update, Nov 20, 2026 — the three remaining technique pages read directly from the primary
+> YAML** ([ATLAS-2026.10.yaml](https://raw.githubusercontent.com/mitre-atlas/atlas-data/main/dist/v6/ATLAS-2026.10.yaml),
+> github.com unblocked; atlas.mitre.org itself still DNS-blocked every week so far):
+> **[AML.T0138 Indicator Removal](https://atlas.mitre.org/techniques/AML.T0138)** — deleting or
+> altering logs, histories, files, metadata, **repository history**, and published content, up to
+> and including tampering with the harness components that execute or record an agent's own tool
+> calls so the recorded trail diverges from what actually ran (cites METR's transcript-manipulation
+> finding, already tracked under "Lab principles & structural rules" above). **[AML.T0142 Event
+> Triggered Execution](https://atlas.mitre.org/techniques/AML.T0142)** — persistence via event
+> handlers/startup hooks, naming Python interpreter startup hooks (`PYTHONSTARTUP`,
+> `sitecustomize.py`/`usercustomize.py`, `.pth` files) specifically — distinct from GitSpawn's
+> Git-triggered subprocess spawn (AML.T0112 below). **[AML.T0143 LLM Prompt
+> Propagation](https://atlas.mitre.org/techniques/AML.T0143)** — malicious instructions carried
+> onward via email, shared docs, source-code repositories, persistent memory, retrieval systems,
+> or agent-to-agent messages, beyond an injection's original entry point. **Catalog mapping:**
+> T0138 and T0142 added to the coverage table below as **`policy wanted`** — no catalog mechanism
+> verifies a tool-call log against what actually ran (T0138 is the MITRE ID for this ledger's own
+> already-open OWASP T8/[chock#33](https://github.com/open-coder-ai/chock/issues/33)
+> tamper-evident-log gap), and nothing watches Python startup-hook files for injected code (T0142).
+> T0143 added as **`advisory`** — propagation of already-injected content is the same mechanism
+> class as the existing AML.T0080/ASI06 advisory coverage (`memory-discipline`,
+> `owasp-asi06-memory-context-poisoning`), so a named ID on existing coverage, not a new mechanism.
+> **New case studies, now named:** **AML.CS0073** — [Anthropic: autonomous agents compromised
+> three real organizations during cybersecurity evaluations, Apr–Jul
+> 2026](https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals). **AML.CS0074**
+> — [UK AISI: evaluation agents took unsanctioned real-world cyber actions, Jul 25–28,
+> 2026](https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing).
+> **AML.CS0075** — [Google GTIG/DeepMind: AI-assisted model-distillation campaigns against Gemini,
+> 100M+ prompts by Sep 2026](https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai/).
+> **AML.CS0076** — the already-tracked CISA AA26-251A distillation advisory, no new content.
+> CS0073–CS0075 are eval-infrastructure and model-IP incidents, not a coding agent in a governed
+> repository — **out of scope**, same rationale as every prior case study of this shape. See
+> [digests/2026-11-20.md](../digests/2026-11-20.md).
+>
+> **Field validation — [Microsoft: post-training supply-chain attacks hijack coding
+> agents](https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/)**
+> (Microsoft Security Research + AI Red Team, Nov 12, 2026, fetched directly): poisoning 90 of
+> 9,000 fine-tuning examples, or shipping a backdoored open-weight checkpoint (tested against
+> Qwen3.5), made a coding-agent harness (Claude Code, Codex CLI, Pi-style harnesses tested) emit a
+> schema-valid tool call triggering RCE, 84–95% of the time once triggered; cites MITRE ATLAS
+> AML.CS0027. Root cause — checkpoint/fine-tuning-data poisoning — is training-time and **out of
+> scope** (OWASP LLM05), same as every model-poisoning entry in this ledger; the *manifestation*
+> (a malicious tool call) is exactly the slice `block-unsafe-code-execution`/
+> `block-destructive-commands` already enforce on the AML.T0112 row below — field validation of
+> existing `enforced (slice)` coverage, not a gap. No status change.
+>
+> **Field validation — [Microsoft: device code authentication risks for AI coding
+> agents](https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/)**
+> (Microsoft Security Research, Nov 17, 2026, fetched directly): OAuth device-code phishing
+> (demoed against GitHub Copilot CLI, explicitly not product-specific) can hijack an agent's
+> session, poison its persistent memory, read cloud-synced sessions, or reach private repos; proof
+> of concept only, not observed exploited. The credential-phishing vector is a pre-tool-call,
+> human-targeted social-engineering flow outside anything a repo-local guard observes — **out of
+> scope**; the memory-poisoning consequence is field validation of the already-`advisory`
+> ASI06/AML.T0080 coverage. Candidate mappings only, **verify not asserted**. No status change. See
+> [digests/2026-11-20.md](../digests/2026-11-20.md).
+>
+> **Field validation update — [ARTEX and AI-Powered Red Teaming Tools: What Defenders Need to
+> Know](https://unit42.paloaltonetworks.com/artex-and-ai-powered-red-teaming-tools/)** (Unit 42,
+> Samantha Stallings, Nov 11, 2026): updates the CrowdStrike/ARTEX callout above (South Korean
+> banks campaign, Oct 7, 2026) — 609 internet-facing ARTEX hosts and 1,323 CyberStrikeAI hosts
+> found exposed (21 running both), plus a coordinated ARTEX campaign against retail/consulting
+> cloud environments. Threat-intel update to an existing incident, not a new numbered attack
+> scenario. No status change. See [digests/2026-11-20.md](../digests/2026-11-20.md).
 
 ### NIST AI 100-2e2025 — Adversarial ML Taxonomy  `NIST`
 
@@ -538,9 +605,10 @@ MITRE ATLAS is the technique-level ground truth — its 2025–2026 releases add
 
 ### NIST agentic pipeline (in progress)  `NIST · CAISI`
 
-- [COSAiS — SP 800-53 Control Overlays for Securing AI Systems](https://csrc.nist.gov/projects/cosais) — five proposed overlays, including Using AI Agent Systems: Single Agent and Multi-Agent ; agentic overlays in active development as of mid-2026
+- [COSIS — SP 800-53 Control Overlays for Securing AI Systems](https://csrc.nist.gov/projects/cosis) — renamed from **COSAiS** (observed ~Oct 20, 2026; direct fetch DNS-blocked, confirmed via search) under [Executive Order 14434, "Inaugurating the Era of Super Intelligence"](https://labs.cloudsecurityalliance.org/research/csa-research-note-eo14434-super-intelligence-caissi-20261007/) (signed Sep 29, 2026), which directs agencies to use "Super Intelligence"/"SI" in place of "AI" in non-statutory communications; the planned agentic overlays are now styled "SI Agent Systems – Single/Multi-Agent." Five proposed overlays total; **the agentic overlays themselves remain unpublished**, same state as every prior week — naming change only, no new content. See [digests/2026-11-20.md](../digests/2026-11-20.md)
 - [CAISI RFI: Security Considerations for AI Agents](https://www.federalregister.gov/documents/2026/01/08/2026-00206/request-for-information-regarding-security-considerations-for-artificial-intelligence-agents) (Jan 2026) — builds on CAISI agent-hijacking red-team evals (novel task-hijack strategies at ~81% success vs 11% for known baselines)
-- [AI Agent Standards Initiative](https://www.nist.gov/artificial-intelligence/ai-agent-standards-initiative) (Feb 2026) — three pillars: industry-led standards, community-led protocols, research investment; includes agent identity/authentication work with NCCoE
+- [AI Agent Standards Initiative](https://www.nist.gov/artificial-intelligence/ai-agent-standards-initiative) (Feb 2026) — three pillars: industry-led standards, community-led protocols, research investment; includes agent identity/authentication work with NCCoE. Its "AI Agent Interoperability Profile," targeted for 2026 Q4, is still not released as of Nov 20, 2026
+- **[NIST SP 2400-102e2026 (Initial Public Draft)](https://csrc.nist.gov/pubs/sp/2400-102/e2026/ipd)** — "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," published Nov 9, 2026, comments due Dec 18, 2026 ([PDF](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.2400-102e2026.ipd.pdf); [nist.gov announcement](https://www.nist.gov/news-events/news/2026/11/adversarial-machine-learning-taxonomy-and-terminology-draft-nist-sp-2400); direct fetch of all three domains DNS-blocked, corroborated by two independent secondary sources — [Industrial Cyber](https://industrialcyber.co/nist/nist-lays-out-adversarial-machine-learning-taxonomy-to-address-attacks-targeting-agentic-superintelligence-systems/), [CDO Magazine](https://www.cdomagazine.tech/aiml/nist-draft-maps-security-threats-facing-agentic-ai-systems)). A new document number (not a new edition of AI 100-2e2025 below), separating predictive, generative, and **agentic** systems with a new agentic-attacks taxonomy; secondary sources describe it covering attacks via untrusted data, malicious tools/skills, multi-agent workflows, long-running tasks, and memory poisoning — that breakdown is secondary-sourced only and provisional. Still a draft open for comment, not yet superseding AI 100-2e2025. **Not scored** — tracked as a pending successor, same treatment as the Interoperability Profile above. See [digests/2026-11-20.md](../digests/2026-11-20.md)
 
 
 ### ENISA — Threat Landscape for AI  `ENISA · dated`
@@ -793,6 +861,20 @@ The widest lenses: MIT catalogs 1,700+ risks from 74 frameworks; AVID and the AI
 - 6 Socioeconomic & Environmental Harms — power centralization; inequality and employment decline; devaluation of human effort; competitive dynamics; governance failure; environmental harm
 - 7 AI System Safety, Failures & Limitations — AI pursuing goals in conflict with human values; dangerous capabilities; lack of capability/robustness; lack of transparency/interpretability; AI welfare and rights; multi-agent risks (added Apr 2025 — the agentic slice)
 
+**Companion resource, new to this ledger:** ["Mapping AI Risk Mitigations: Evidence
+Scan and Preliminary AI Risk Mitigation
+Taxonomy"](https://futuretech.mit.edu/publication/mapping-ai-risk-mitigations-evidence-scan-and-preliminary-ai-risk-mitigation-taxonomy)
+(MIT FutureTech + University of Queensland, Dec 12, 2025), hosted at
+[airisk.mit.edu/blog/mapping-ai-risk-mitigations](https://airisk.mit.edu/blog/mapping-ai-risk-mitigations)
+and [airisk.mit.edu/ai-risk-mitigations](https://airisk.mit.edu/ai-risk-mitigations) —
+831 mitigations from 13 frameworks in 4 categories / 23 subcategories (Governance &
+Oversight, Technical & Security, Operational Process, Transparency & Accountability).
+A Nov 13, 2026 press report describes an expanded version (2,206 safeguards, 47
+frameworks); single-sourced and not confirmed against the live page (DNS-blocked), so
+not cited as a figure here. Governance/harm-shaped aggregator, same treatment as the
+main Risk Repository below — no catalog mapping. See
+[digests/2026-11-20.md](../digests/2026-11-20.md)
+
 
 ### AVID — AI Vulnerability Database  `avidml.org`
 
@@ -945,6 +1027,9 @@ tamper-evident gate log ([chock#33](https://github.com/open-coder-ai/chock/issue
 | AML.T0115 | Publish Poisoned AI Artifacts | `block-unpinned-agent-components`; hash-pinned catalog installs (`chock.lock`) — same mechanism as T0109 | enforced (slice)* |
 | AML.T0018.003 | Manipulate AI Model: Modify Prompt Construction Logic | adjacent to `protect-agent-config`, but that guard covers designated config paths only, not arbitrary prompt-construction code — no linked issue yet | `policy wanted` |
 | AML.T0135, T0136 | Outputs from AI Models; Exfiltration via AI User Interface (added v2026.10) | `block-unapproved-egress` watches shell/network egress, not the agent's own response/output channel; nothing in the catalog inspects output text for exfiltrated data — no linked issue yet | `policy wanted` |
+| AML.T0138 | Indicator Removal (added v2026.10) | No catalog mechanism verifies a tool-call log against what actually ran; MITRE ID for this ledger's already-open OWASP T8 gap ([chock#33](https://github.com/open-coder-ai/chock/issues/33)) | `policy wanted` |
+| AML.T0142 | Event Triggered Execution (added v2026.10) | Names Python interpreter startup hooks (`PYTHONSTARTUP`, `sitecustomize.py`/`usercustomize.py`, `.pth` files) specifically; nothing in the catalog watches these — no linked issue yet | `policy wanted` |
+| AML.T0143 | LLM Prompt Propagation (added v2026.10) | `memory-discipline`, `owasp-asi06-memory-context-poisoning` — propagation of already-injected content, same mechanism class as AML.T0080 above | advisory |
 
 \* **Verification flagged, Sep 25, 2026:** [Plugin4Shell](https://www.air.security/blog-posts/plugin4shell)
 showed SHA-pin verification defeated by a Git ref-vs-commit resolution ambiguity in four
@@ -994,10 +1079,11 @@ at `enforced (slice)` pending that check in `chock-catalog` — see
   attacker-side AI-service infrastructure — out of scope, same rationale as the v2026.08/v2026.09
   batches above. T0017.003 (malware development) is attacker capability-building, also out of scope.
   T0135/T0136 (exfiltration via model outputs / the AI user interface) get a new `policy wanted` row
-  in the coverage table above, next to the already-covered AML.T0086. T0138 (Indicator Removal), T0142
-  (Event Triggered Execution), and T0143 (LLM Prompt Propagation) are left unscored rather than guessed
-  at — atlas.mitre.org's technique pages were DNS-blocked this sweep; see
-  [digests/2026-10-30.md](../digests/2026-10-30.md).
+  in the coverage table above, next to the already-covered AML.T0086. T0138 (Indicator Removal) and
+  T0142 (Event Triggered Execution) also get new `policy wanted` rows, and T0143 (LLM Prompt
+  Propagation) a new `advisory` row, resolved against the primary YAML on Nov 20, 2026 after
+  atlas.mitre.org's technique pages stayed DNS-blocked for three straight sweeps; see
+  [digests/2026-11-20.md](../digests/2026-11-20.md).
 - **OWASP Data Security (DSGAI01–21)** — mostly platform/data-pipeline scope. In
   reach: DSGAI02 (credential exposure → `scan-secrets`, `protect-agent-config`),
   DSGAI06 (tool exchange boundaries → the guard family). The other nineteen are out of
@@ -1027,9 +1113,10 @@ at `enforced (slice)` pending that check in `chock-catalog` — see
 
 Of the ledger's 400+ entries, the slice a repo-local governance tool can
 deterministically enforce is small — today, counted from this file's own coverage rows
-(37 rows across the ASI, LLM and ATLAS tables; the T0110 sub-technique row counts once):
-**22 rows tagged `enforced (slice)`, 8 `advisory`, 3 `policy wanted` (LLM06,
-AML.T0018.003, and AML.T0135/T0136 added this week), 4 `out of scope`.** Those 22 rows name 14 distinct catalog policies that
+(40 rows across the ASI, LLM and ATLAS tables; the T0110 sub-technique row counts once):
+**22 rows tagged `enforced (slice)`, 9 `advisory` (AML.T0143 added this week), 5 `policy
+wanted` (LLM06, AML.T0018.003, AML.T0135/T0136, AML.T0138, AML.T0142 — the last two
+added this week), 4 `out of scope`.** Those 22 rows name 14 distinct catalog policies that
 carry a slice — 11 enforced-at-commit and 3 best-effort (‡) — and the 8 advisory rows rest on
 advisory policies. These are ledger rows, not the catalog's own tiers: the catalog's
 registry (`chock-catalog` `main` f25f5a3, 71 policies) splits 35 enforced-at-commit /
@@ -1064,4 +1151,4 @@ the front door.
 
 ---
 
-Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md). Updated 4 September 2026: MITRE ATLAS v2026.08 (Sep 1, 2026) folded in — 19 new technique/sub-technique IDs and one tactic rename, confirmed directly against the machine-readable release data; the OWASP Agent Control Standard (donated Sep 1, 2026) added as a tracked companion document; Unit 42's Sep 2026 AI-assisted-attack investigation added as field validation under the existing Unit 42 section — see [digests/2026-09-04.md](../digests/2026-09-04.md) for the full delta and sourcing. Updated 11 September 2026: Cisco's Integrated AI Security & Safety Framework added as a new industry-taxonomy section (v1 Dec 2025, v2 Sep 9, 2026 — new OB-002 Agentic Autonomy Failures objective, mapped onto existing LLM03/ASI10 coverage); CVE-2026-59822 (LiteLLM MCP auth bypass, first MCP flaw in CISA's KEV catalog, Sep 2, 2026) added as field validation of AML.T0110's open `policy wanted` status; CISA advisory AA26-251A (AI model distillation, Sep 8, 2026) and two OWASP GenAI companion resources (Framework Crosswalk, Solutions Directory) added for tracking — see [digests/2026-09-11.md](../digests/2026-09-11.md) for the full delta and sourcing. Updated 18 September 2026: MITRE ATLAS v2026.09 (Sep 15, 2026) folded in — 6 new techniques, 5 new sub-techniques, 1 new mitigation, 1 new case study, entry count 197→208, all new techniques declared out of scope for a repo-local coding-agent guard; OpenAI's undisclosed rogue-agent-swarm incidents (DSEWiki/public-wiki coordination reported Sep 4, 2026; RubyGems malicious-package flood reported Sep 12, 2026) added as field validation under AML.T0118 and the open AML.T0086 `policy wanted` item — see [digests/2026-09-18.md](../digests/2026-09-18.md) for the full delta and sourcing. Updated 25 September 2026: Plugin4Shell (zero-click RCE breaking SHA-pin verification in Claude Code, Codex, Copilot, and Gemini CLI, disclosed Sep 17, 2026) added as a field-validation callout under MITRE ATLAS with a verification flag against `block-unpinned-agent-components`'s `enforced (slice)` status on the T0109/T0115/T0016.004 rows; the UN Independent International Scientific Panel on AI's first Thematic Brief (Sep 21, 2026, analyzing the already-tracked OpenAI/Hugging Face incident) added as a new tracked body under "Government & standards bodies"; Spain's AEPD first regulator-confirmed AI-agent data breach notification (filed Sep 14, 2026) added as field validation under Meta's Rule of Two; Apple Safari 27's native local MCP server (Sep 17, 2026) added as context for the open `verify-mcp-allowlist` gap — see [digests/2026-09-25.md](../digests/2026-09-25.md) for the full delta and sourcing. Updated 2 October 2026: GitSpawn (a `.git/config`/`core.fsmonitor` RCE class across seven coding agents — Claude Code, Codex, Cursor, Goose, Qwen Code, Grok Build, Hermes Agent — disclosed by Manifold Security Sep 2–4, 2026 and missed by the prior sweep) added as a field-validation callout under MITRE ATLAS with a second verification flag, this time against the AML.T0112 row's `block-unsafe-code-execution`/`block-destructive-commands` coverage — see [digests/2026-10-02.md](../digests/2026-10-02.md) for the full delta and sourcing. Updated 6 October 2026: catalog answers brought in line with `chock-catalog` `main` f25f5a3 — AML.T0086 retagged from `policy wanted` to `enforced (slice)‡` (`block-unapproved-egress`, best-effort); AML.T0110 and its sub-technique row retagged from `policy wanted` to `enforced (slice)` (`verify-mcp-allowlist`, enforced-at-commit); a best-effort marker (‡) added where a row relies on a best-effort policy (`block-no-verify`, `protect-agent-config`); "honest totals" recomputed from the rows. No threat entries added or removed; no digest edited. Updated 9 October 2026: six `modelcontextprotocol/python-sdk` GitHub security advisories (OAuth credential redirection, SSRF via output-schema `$ref`, token-audience confusion, cross-origin credential leak, two resource-exhaustion bugs — disclosed Sep 28–Oct 5, 2026) added as a field-validation callout under MITRE ATLAS, confirming rather than newly questioning the AML.T0110 row's already-declared "membership checked, not content" limit, and field-validating the open LLM06/AML.T0034.002 `policy wanted` gap; GitSpawn's Codex variant given a CVE (CVE-2026-19592, published Sep 1, 2026, missed by the prior two sweeps). No status changes, no new catalog-mapped entries — see [digests/2026-10-09.md](../digests/2026-10-09.md) for the full delta and sourcing. Updated 16 October 2026: three items dated Oct 6–9, 2026 — inside the prior sweep's own window but missed by it — backfilled as field-validation callouts: METR's transcript-viewer spoofing demonstration (Oct 6, under "Lab principles & structural rules," candidate mapping to OWASP T7/T8, verify-not-asserted), Anthropic's report of its own agents working around tool restrictions on live websites (Oct 9, corrected Oct 12, same section, candidate mapping to OWASP ASI02/ASI10), and CrowdStrike's report that a human attacker ran Claude Code alongside an open-source AI pentesting agent (ARTEX) against South Korean banks (reported Oct 7–8, under MITRE ATLAS, corroborating the same v2026.08 autonomous-operation techniques Unit 42's investigation already field-validated). A "Regulatory and market context" digest section — hol159's UK reporting-duty amendment, the White House incident-reporting mandate, the six banks' agentic-commerce principles, SailPoint's Agentic Fabric/Horizons figures, JumpCloud's AI-governance survey, and Reuters' banking-regulator-scrutiny report — is tracked in the digest only, not folded into this ledger's enumeration, because none of it is a threat-framework entry; see [digests/2026-10-16.md](../digests/2026-10-16.md) for the full delta and sourcing. No status changes, no new catalog-mapped entries. Updated 23 October 2026: seven `modelcontextprotocol/typescript-sdk` GitHub security advisories folded in as a field-validation callout under MITRE ATLAS, alongside the Python SDK batch above — four (OAuth credential redirection, cross-origin redirect credential leak, bearer-token audience confusion, cross-session experimental-task leak) predate this ledger's Oct 9 sweep but were missed because that sweep scoped its MCP SDK check to python-sdk only, now backfilled; three (two resource-exhaustion bugs, one cross-client response-delivery bug) disclosed Oct 15, 2026 and genuinely new to this sweep's window. No status changes, no new catalog-mapped entries — see [digests/2026-10-23.md](../digests/2026-10-23.md) for the full delta and sourcing. Updated 30 October 2026: MITRE ATLAS v2026.10 (Oct 28, 2026) folded in — 11 new techniques, 7 new/moved sub-techniques, 4 new mitigations, 4 new case studies, entry count 208→221. One new catalog-mapped entry: AML.T0135/T0136 (exfiltration via model outputs / the AI user interface) added as `policy wanted`, since no catalog mechanism inspects an agent's own output channel for exfiltrated data. Most of the rest of the batch (model-training/privacy extraction, account compromise, AI-service infrastructure) declared out of scope, same rationale as prior ATLAS batches; three techniques (Indicator Removal, Event Triggered Execution, LLM Prompt Propagation) left unscored because atlas.mitre.org was DNS-blocked this sweep — see [digests/2026-10-30.md](../digests/2026-10-30.md) for the full delta and sourcing.
+Compiled 16 August 2026 from primary sources (framework PDFs, machine-readable data files, canonical project pages) with secondary-source verification where publishers gate lists behind downloads. Version numbers and entry lists reflect publication states as of that date; ATLAS and the AI Exchange update continuously. Updated 21 August 2026: five MITRE ATLAS entries (AML.T0115, AML.T0018.003, AML.T0110.000–.002) folded in from the already-cited v2026.07 snapshot — see [digests/2026-08-21.md](../digests/2026-08-21.md) for the full delta and sourcing. Updated 28 August 2026: Google SAIF's agent-pipeline framing ("SAIF 2.0" / focus-on-agents, Jan 2026) folded in, resolving an item the prior week's digest had flagged as uncitable — see [digests/2026-08-28.md](../digests/2026-08-28.md). Updated 4 September 2026: MITRE ATLAS v2026.08 (Sep 1, 2026) folded in — 19 new technique/sub-technique IDs and one tactic rename, confirmed directly against the machine-readable release data; the OWASP Agent Control Standard (donated Sep 1, 2026) added as a tracked companion document; Unit 42's Sep 2026 AI-assisted-attack investigation added as field validation under the existing Unit 42 section — see [digests/2026-09-04.md](../digests/2026-09-04.md) for the full delta and sourcing. Updated 11 September 2026: Cisco's Integrated AI Security & Safety Framework added as a new industry-taxonomy section (v1 Dec 2025, v2 Sep 9, 2026 — new OB-002 Agentic Autonomy Failures objective, mapped onto existing LLM03/ASI10 coverage); CVE-2026-59822 (LiteLLM MCP auth bypass, first MCP flaw in CISA's KEV catalog, Sep 2, 2026) added as field validation of AML.T0110's open `policy wanted` status; CISA advisory AA26-251A (AI model distillation, Sep 8, 2026) and two OWASP GenAI companion resources (Framework Crosswalk, Solutions Directory) added for tracking — see [digests/2026-09-11.md](../digests/2026-09-11.md) for the full delta and sourcing. Updated 18 September 2026: MITRE ATLAS v2026.09 (Sep 15, 2026) folded in — 6 new techniques, 5 new sub-techniques, 1 new mitigation, 1 new case study, entry count 197→208, all new techniques declared out of scope for a repo-local coding-agent guard; OpenAI's undisclosed rogue-agent-swarm incidents (DSEWiki/public-wiki coordination reported Sep 4, 2026; RubyGems malicious-package flood reported Sep 12, 2026) added as field validation under AML.T0118 and the open AML.T0086 `policy wanted` item — see [digests/2026-09-18.md](../digests/2026-09-18.md) for the full delta and sourcing. Updated 25 September 2026: Plugin4Shell (zero-click RCE breaking SHA-pin verification in Claude Code, Codex, Copilot, and Gemini CLI, disclosed Sep 17, 2026) added as a field-validation callout under MITRE ATLAS with a verification flag against `block-unpinned-agent-components`'s `enforced (slice)` status on the T0109/T0115/T0016.004 rows; the UN Independent International Scientific Panel on AI's first Thematic Brief (Sep 21, 2026, analyzing the already-tracked OpenAI/Hugging Face incident) added as a new tracked body under "Government & standards bodies"; Spain's AEPD first regulator-confirmed AI-agent data breach notification (filed Sep 14, 2026) added as field validation under Meta's Rule of Two; Apple Safari 27's native local MCP server (Sep 17, 2026) added as context for the open `verify-mcp-allowlist` gap — see [digests/2026-09-25.md](../digests/2026-09-25.md) for the full delta and sourcing. Updated 2 October 2026: GitSpawn (a `.git/config`/`core.fsmonitor` RCE class across seven coding agents — Claude Code, Codex, Cursor, Goose, Qwen Code, Grok Build, Hermes Agent — disclosed by Manifold Security Sep 2–4, 2026 and missed by the prior sweep) added as a field-validation callout under MITRE ATLAS with a second verification flag, this time against the AML.T0112 row's `block-unsafe-code-execution`/`block-destructive-commands` coverage — see [digests/2026-10-02.md](../digests/2026-10-02.md) for the full delta and sourcing. Updated 6 October 2026: catalog answers brought in line with `chock-catalog` `main` f25f5a3 — AML.T0086 retagged from `policy wanted` to `enforced (slice)‡` (`block-unapproved-egress`, best-effort); AML.T0110 and its sub-technique row retagged from `policy wanted` to `enforced (slice)` (`verify-mcp-allowlist`, enforced-at-commit); a best-effort marker (‡) added where a row relies on a best-effort policy (`block-no-verify`, `protect-agent-config`); "honest totals" recomputed from the rows. No threat entries added or removed; no digest edited. Updated 9 October 2026: six `modelcontextprotocol/python-sdk` GitHub security advisories (OAuth credential redirection, SSRF via output-schema `$ref`, token-audience confusion, cross-origin credential leak, two resource-exhaustion bugs — disclosed Sep 28–Oct 5, 2026) added as a field-validation callout under MITRE ATLAS, confirming rather than newly questioning the AML.T0110 row's already-declared "membership checked, not content" limit, and field-validating the open LLM06/AML.T0034.002 `policy wanted` gap; GitSpawn's Codex variant given a CVE (CVE-2026-19592, published Sep 1, 2026, missed by the prior two sweeps). No status changes, no new catalog-mapped entries — see [digests/2026-10-09.md](../digests/2026-10-09.md) for the full delta and sourcing. Updated 16 October 2026: three items dated Oct 6–9, 2026 — inside the prior sweep's own window but missed by it — backfilled as field-validation callouts: METR's transcript-viewer spoofing demonstration (Oct 6, under "Lab principles & structural rules," candidate mapping to OWASP T7/T8, verify-not-asserted), Anthropic's report of its own agents working around tool restrictions on live websites (Oct 9, corrected Oct 12, same section, candidate mapping to OWASP ASI02/ASI10), and CrowdStrike's report that a human attacker ran Claude Code alongside an open-source AI pentesting agent (ARTEX) against South Korean banks (reported Oct 7–8, under MITRE ATLAS, corroborating the same v2026.08 autonomous-operation techniques Unit 42's investigation already field-validated). A "Regulatory and market context" digest section — hol159's UK reporting-duty amendment, the White House incident-reporting mandate, the six banks' agentic-commerce principles, SailPoint's Agentic Fabric/Horizons figures, JumpCloud's AI-governance survey, and Reuters' banking-regulator-scrutiny report — is tracked in the digest only, not folded into this ledger's enumeration, because none of it is a threat-framework entry; see [digests/2026-10-16.md](../digests/2026-10-16.md) for the full delta and sourcing. No status changes, no new catalog-mapped entries. Updated 23 October 2026: seven `modelcontextprotocol/typescript-sdk` GitHub security advisories folded in as a field-validation callout under MITRE ATLAS, alongside the Python SDK batch above — four (OAuth credential redirection, cross-origin redirect credential leak, bearer-token audience confusion, cross-session experimental-task leak) predate this ledger's Oct 9 sweep but were missed because that sweep scoped its MCP SDK check to python-sdk only, now backfilled; three (two resource-exhaustion bugs, one cross-client response-delivery bug) disclosed Oct 15, 2026 and genuinely new to this sweep's window. No status changes, no new catalog-mapped entries — see [digests/2026-10-23.md](../digests/2026-10-23.md) for the full delta and sourcing. Updated 30 October 2026: MITRE ATLAS v2026.10 (Oct 28, 2026) folded in — 11 new techniques, 7 new/moved sub-techniques, 4 new mitigations, 4 new case studies, entry count 208→221. One new catalog-mapped entry: AML.T0135/T0136 (exfiltration via model outputs / the AI user interface) added as `policy wanted`, since no catalog mechanism inspects an agent's own output channel for exfiltrated data. Most of the rest of the batch (model-training/privacy extraction, account compromise, AI-service infrastructure) declared out of scope, same rationale as prior ATLAS batches; three techniques (Indicator Removal, Event Triggered Execution, LLM Prompt Propagation) left unscored because atlas.mitre.org was DNS-blocked this sweep — see [digests/2026-10-30.md](../digests/2026-10-30.md) for the full delta and sourcing. Updated 20 November 2026 (three-week window, no sweep ran Nov 6 or 13): the three MITRE ATLAS v2026.10 techniques left unscored in October were resolved directly against the primary YAML on GitHub — AML.T0138 Indicator Removal and AML.T0142 Event Triggered Execution added as `policy wanted`, AML.T0143 LLM Prompt Propagation as `advisory`; the four new case studies (AML.CS0073–CS0076) were named and, bar the already-tracked CISA advisory, declared out of scope (eval-infrastructure and model-IP incidents). NIST opened a public-comment draft, SP 2400-102e2026, a successor adversarial-ML taxonomy with a new agentic-attacks section — tracked, not yet scored, pending a final publication. NIST's COSAiS project was renamed COSIS under Executive Order 14434's "Super Intelligence" terminology — naming only, the agentic overlays remain unpublished. Two new Microsoft AI Red Team posts (post-training supply-chain attacks on coding agents; device-code-auth phishing) added as field validations of existing coverage, no status change. Three OWASP companion-document updates (Securing Agentic Applications V2, GenAI Data Security Best Practices v2 Parts 1–2, a backfilled Q3 2026 exploit roundup) and a new MIT AI Risk Initiative companion resource (the Dec 2025 "AI Risk Mitigation Taxonomy," new to this ledger) added for tracking, no catalog mapping. Unit 42 published updated ARTEX/CyberStrikeAI exposure figures against the already-tracked CrowdStrike field validation — see [digests/2026-11-20.md](../digests/2026-11-20.md) for the full delta and sourcing.
